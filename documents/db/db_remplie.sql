@@ -1,8 +1,8 @@
-CREATE DATABASE  IF NOT EXISTS `readit_2020` /*!40100 DEFAULT CHARACTER SET utf8 */;
-USE `readit_2020`;
+CREATE DATABASE  IF NOT EXISTS `readit_2026` /*!40100 DEFAULT CHARACTER SET utf8 */;
+USE `readit_2026`;
 -- MySQL dump 10.13  Distrib 5.7.23, for osx10.9 (x86_64)
 --
--- Host: 127.0.0.1    Database: readit_2020
+-- Host: 127.0.0.1    Database: readit_2026
 -- ------------------------------------------------------
 -- Server version	5.7.23
 
