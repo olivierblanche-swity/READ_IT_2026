@@ -1,0 +1,87 @@
+ASTUCES :
+
+  1. Mettre en place l'environnement de versionning (voir vidéo)
+  2. Créer l'arborescence MVC (faire un commit quand c'est fait)
+      > app
+        > config
+          > parametres.php
+        > controleurs
+        > modeles
+        > vues
+          > template
+            > index.php
+            > partials
+        > routeur.php
+      > noyau
+        > connexion.php
+        > init.php
+      > www
+        > .htaccess
+        > index.php
+        > css
+        > js
+        > images
+        > fonts
+        > scss
+  3. Intégration du template fourni,
+     y lacer les zones dynamiques et décomposer en partials
+     > Faire un commit
+  4. Créer la route par défaut: affichage des 10 derniers posts
+     > Faire un commit
+  5. Faire le lien vers la route du détail d'un post
+     Et créer la route correspondante
+     Afficher le contenu du post (pas les tags, ni l'auteur, ni les comments)
+     > Faire un commit
+  6. Liste des tags du post : 2 solutions:
+      - SOIT: Dans l'action show du CTRL postsControleur,
+              Aller chercher les tags du post en faisant appel à la fonction indexByPostId(id du post) du modèle des tags
+              Faire un foreach pour afficher les tags dans la vue show du post
+              ou faire un include de la vue indexByPostId des tags dans la vue show du post
+      - SOIT: Dans la vue show du post, faire appel à l'action indexByPostId du CTRL tagsControleur
+              qui charge directement la vue indexByPostId
+     > Faire un commit
+  7. Détails de l'auteur: 2 solutions
+      - SOIT: Dans l'action show du CTRL postsControleur,
+              Aller chercher l'auteur du post en faisant appel à la fonction show(id de l'auteur) du modèle des auteurs
+              Afficher l'auteur dans la vue show du post
+              ou faire un include de la vue show des auteurs dans la vue show du post
+      - SOIT: Dans la vue show du post, faire appel à l'action show du CTRL authorsControleur
+              qui charge directement la vue show
+    > Faire un commit
+  8. Liste des comments: 2 solutions
+      - SOIT: Dans l'action show du CTRL postsControleur,
+              Aller chercher les comments du post en faisant appel à la fonction indexByPostId(id du post) du modèle des comments
+              Faire un foreach pour afficher les comments dans la vue show du post
+              ou faire un include de la vue indexByPostId des comments dans la vue show du post
+      - SOIT: Dans la vue show du post, faire appel à l'action indexByPostId du CTRL commentsControleur
+              qui charge directement la vue indexByPostId
+    > Faire un commit
+  9. Inclure le formulaire de l'ajout d'un comment: 2 solutions
+      - SOIT: copier/coller le code du formulaire après le foreach des comments
+      - SOIT: faire un include de la vue comments/_addForm.php qui contient le formulaire
+     > Faire un commit
+  10. Intégrer les contenus dynamiques dans le template
+      Depuis le template,
+        > Lancer l'action index du CTRL des categories
+          Faire un commit
+        > Lancer l'action lastestIndex du CTRL des posts
+          Faire un commit
+        > Lancer l'action index du CTRL des tags
+          Faire un commit
+  11. Changer les liens du menu et créer la route de la page contact (?contact)
+      > Créer la route contact qui ne lance aucune action d'aucun CTRL,
+      > Elle ne fait que charger le partial template/partials/_contact.php
+      Faire un commit
+  12. Route de l'ajout d'un commentaire
+      > Modifier l'action du form pour aller vers ?comments=add
+      > Choisir la méthode POST et bien nommer tous les champs (en veillant à avoir un champs avec l'id du post !!!)
+      > Créer la route
+      > Créer l'action store qui récupère d'abord tous les $_POST dans le CTRL des comments
+      > Faire appel à la fct insertOneByPostId() du modèle des comments
+      > Cette fct fait un INSERT et retourne l'id du comment qui vien d'êtr ajouté ($connexion->lastInsertId())
+      > On récupère cette réponse dans l'action store du CTRL
+      > Si la réponse est > 0, on fait une redirection vers la route du post
+        header(location: ?postID=x)
+      Faire un commit
+
+  13. S'autocongratuler !!! :-D
