@@ -1,6 +1,8 @@
 <?php 
 /**
  * ../app/views/templates/partials/_aside.php
+ * 
+ * $categories id,name 
  */
 ?>
 
@@ -14,12 +16,8 @@
             </div>
             <div class="sidebar-box ftco-animate">
             <div class="categories">
-                <h3>Categories</h3>
-                <li><a href="#">Illustration <span class="ion-ios-arrow-forward"></span></a></li>
-                <li><a href="#">Branding <span class="ion-ios-arrow-forward"></span></a></li>
-                <li><a href="#">Application <span class="ion-ios-arrow-forward"></span></a></li>
-                <li><a href="#">Design <span class="ion-ios-arrow-forward"></span></a></li>
-                <li><a href="#">Marketing <span class="ion-ios-arrow-forward"></span></a></li>
+                <?php include '../app/views//templates/categories/_index.php'; ?>
+                
             </div>
             </div>
 
@@ -63,14 +61,8 @@
             <div class="sidebar-box ftco-animate">
               <h3>Tag Cloud</h3>
               <div class="tagcloud">
-                <a href="#" class="tag-cloud-link">cat</a>
-                <a href="#" class="tag-cloud-link">abstract</a>
-                <a href="#" class="tag-cloud-link">people</a>
-                <a href="#" class="tag-cloud-link">person</a>
-                <a href="#" class="tag-cloud-link">model</a>
-                <a href="#" class="tag-cloud-link">delicious</a>
-                <a href="#" class="tag-cloud-link">desserts</a>
-                <a href="#" class="tag-cloud-link">drinks</a>
+                <?php include '../app/views//templates/tags/_index.php'; ?>
+                
               </div>
             </div>
 

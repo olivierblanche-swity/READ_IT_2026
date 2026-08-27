@@ -6,6 +6,7 @@
 <title>Readit - <?php echo $title; ?></title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <base href="http://localhost/scripts/BES/scripts%20serveur/READ_IT_2026/public/">
 
     <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700,800,900" rel="stylesheet">
 

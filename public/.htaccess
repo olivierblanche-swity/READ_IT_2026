@@ -1,0 +1,21 @@
+RewriteEngine on
+
+# Fichiers ou dossiers reels (css, js, images, pdf, zip, etc): pas de reecriture
+RewriteCond %{REQUEST_FILENAME} -f [OR]
+RewriteCond %{REQUEST_FILENAME} -d
+RewriteRule ^ - [L]
+
+#----------------------------
+# REGLE DE RE-ECRITURE
+
+# ROUTE TESTS.SHOW
+# PATTERN tests/id/slug.html
+# TARGET : index.php?tests=show&id=x
+
+# RewriteRule ^tests\/([1-9][0-9]*)\/([0-9a-z][a-z0-9\-]*[0-9a-z])\.html$ ?tests=show&id=$1 [L]
+
+#-----------------------------
+# FALLBACK
+# toute autre URL non prise en charge retour vers index.php
+
+RewriteRule ^ index.php [L]
