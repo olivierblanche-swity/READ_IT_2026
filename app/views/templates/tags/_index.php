@@ -4,5 +4,5 @@
                 
                 foreach ($tags as $tag) : ?>
 
-                <a href="/tag/<?php echo $tag['id'] ?>" class="tag-cloud-link"><?php echo $tag['name'] ?></a>
+                <a href="tag/<?php echo $tag['id']; ?>/<?php echo Core\Helpers\slugify($tag['name']); ?>.html" class="tag-cloud-link"><?php echo $tag['name']; ?></a>
                 <?php endforeach; ?>

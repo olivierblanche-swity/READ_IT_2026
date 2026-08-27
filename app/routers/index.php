@@ -1,5 +1,8 @@
 <?php
+if(isset($_GET['posts'])):
+     include_once '../app/routers/posts.php';
 
+else:
 /**
      * 1  route par defaut
      * PATTERN: /
@@ -8,8 +11,8 @@
      * 
      */
 
-    include_once '../app/controllers/postsController.php';
-    \App\Controllers\PostsController\indexAction($conn);
+include_once '../app/controllers/postsController.php';
+\App\Controllers\PostsController\indexAction($conn);
 
-
+endif;
 

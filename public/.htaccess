@@ -8,11 +8,23 @@ RewriteRule ^ - [L]
 #----------------------------
 # REGLE DE RE-ECRITURE
 
-# ROUTE TESTS.SHOW
-# PATTERN tests/id/slug.html
-# TARGET : index.php?tests=show&id=x
+# ROUTE TAGS.SHOW
+# PATTERN tags/id/slug(title).html
+# TARGET : index.php?tags=show&id=x
 
-# RewriteRule ^tests\/([1-9][0-9]*)\/([0-9a-z][a-z0-9\-]*[0-9a-z])\.html$ ?tests=show&id=$1 [L]
+RewriteRule ^tags\/([1-9][0-9]*)\/([0-9a-z][a-z0-9\-]*[0-9a-z])\.html$ ?tags=show&id=$1 [L]
+
+# ROUTE CATEGORIES.SHOW
+# PATTERN categories/id/slug(title).html
+# TARGET : index.php?categories=show&id=x
+
+RewriteRule ^categories\/([1-9][0-9]*)\/([0-9a-z][a-z0-9\-]*[0-9a-z])\.html$ ?categories=show&id=$1 [L]
+
+# ROUTE POSTS.SHOW
+# PATTERN posts/id/slug(title).html
+# TARGET : index.php?posts=show&id=x
+
+ RewriteRule ^posts\/([1-9][0-9]*)\/([0-9a-z][a-z0-9\-]*[0-9a-z])\.html$ ?posts=show&id=$1 [L]
 
 #-----------------------------
 # FALLBACK

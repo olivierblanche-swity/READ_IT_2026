@@ -4,6 +4,6 @@
                 $categories = \App\Models\CategoriesModel\findAll($conn);
                 
                 foreach ($categories as $category) : ?>
-                <li><a href="/category/<?php echo $category['id'] ?>"> <?php echo $category['name'] ?> <span class="ion-ios-arrow-forward"></span></a></li>
+                <li><a href="categories/<?php echo $category['id']; ?>/<?php echo Core\Helpers\slugify($category['name']); ?>.html"> <?php echo $category['name']; ?> <span class="ion-ios-arrow-forward"></span></a></li>
 
                 <?php endforeach; ?>

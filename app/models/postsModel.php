@@ -22,3 +22,17 @@ function findAll(PDO $conn) :array  {
     return $posts;        
 
 }
+
+function findOneById(PDO $conn, string $id) :array {
+    $sql = "SELECT *
+            FROM posts
+            WHERE id = :id;";
+
+    $rs = $conn->prepare($sql);
+    $rs->bindValue(':id', $id, PDO::PARAM_INT);
+    $rs->execute();
+    $post = $rs->fetch(PDO::FETCH_ASSOC);
+    $rs->closeCursor();
+    unset($rs);
+    return $post;
+}
