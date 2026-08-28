@@ -1,9 +1,17 @@
 <?php
 
-/** @var array $post 
+/** @var array $post
+ * @var array $tags
+ * @var array $author
+ * @var array $comments
  * ../app/views/templates/posts/index.php
  * 
  * var disp $posts array (array (id,title,created_at,resume,image,content,authors_id, category_id))
+ * var disp $tags array ( id, name )
+ * var disp $author array (authorId, lastname, firstname, biography, authorImage )
+ * var disp $comments array ( commentsId, pseudo, commentContent, commentCreatedAt)
+ * 
+ *  echo date('F,d Y \a\t g:ia', $created_at);  F=mois d=jour Y annee 4 chif \a\t =at g=heure i=sec a=am/pm
  */
 
 ?>
@@ -14,7 +22,7 @@
 
             <h1 class="mb-3 h1"><?php echo htmlspecialchars($post['title']); ?></h1>
             <p><?php echo htmlspecialchars($post['content']);?></p>
-            <p>Molestiae cupiditate inventore animi, maxime sapiente optio, illo est nemo veritatis repellat sunt doloribus nesciunt! Minima laborum magni reiciendis qui voluptate quisquam voluptatem soluta illo eum ullam incidunt rem assumenda eveniet eaque sequi deleniti tenetur dolore amet fugit perspiciatis ipsa, odit. Nesciunt dolor minima esse vero ut ea, repudiandae suscipit!</p>
+           
             <h2 class="mb-3 mt-5">#2. Creative WordPress Themes</h2>
             <p>Temporibus ad error suscipit exercitationem hic molestiae totam obcaecati rerum, eius aut, in. Exercitationem atque quidem tempora maiores ex architecto voluptatum aut officia doloremque. Error dolore voluptas, omnis molestias odio dignissimos culpa ex earum nisi consequatur quos odit quasi repellat qui officiis reiciendis incidunt hic non? Debitis commodi aut, adipisci.</p>
             <p class="mb-5">
@@ -26,50 +34,38 @@
             <p>Voluptas dolores dignissimos dolorum temporibus, autem aliquam ducimus at officia adipisci quasi nemo a perspiciatis provident magni laboriosam repudiandae iure iusto commodi debitis est blanditiis alias laborum sint dolore. Dolores, iure, reprehenderit. Error provident, pariatur cupiditate soluta doloremque aut ratione. Harum voluptates mollitia illo minus praesentium, rerum ipsa debitis, inventore?</p>
             <div class="tag-widget post-tag-container mb-5 mt-5">
               <div class="tagcloud">
-                <a href="#" class="tag-cloud-link">Life</a>
-                <a href="#" class="tag-cloud-link">Sport</a>
-                <a href="#" class="tag-cloud-link">Tech</a>
-                <a href="#" class="tag-cloud-link">Travel</a>
+                <?php foreach ($tags as $tag): ?>
+                <a href="tag/<?php echo $tag['tagsId']; ?>/<?php echo Core\Helpers\slugify($tag['tagsName']); ?>.html" class="tag-cloud-link"><?php echo $tag['tagsName']; ?></a>
+                <?php endforeach; ?>
               </div>
             </div>
 
             <div class="about-author d-flex p-4 bg-light">
               <div class="bio mr-5">
-                <img src="images/person_1.jpg" alt="Image placeholder" class="img-fluid mb-4">
+                <img src="images/<?php echo $author['authorImage']; ?>" alt="<?php echo $author['lastname']; ?> <?php echo $author['firstname']; ?>" class="img-fluid mb-4">
               </div>
               <div class="desc">
-                <h3>George Washington</h3>
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ducimus itaque, autem necessitatibus voluptate quod mollitia delectus aut, sunt placeat nam vero culpa sapiente consectetur similique, inventore eos fugit cupiditate numquam!</p>
+                <h3><?php echo $author['firstname']; ?> <?php echo $author['lastname']; ?></h3>
+                <p><?php echo $author['biography']; ?></p>
               </div>
             </div>
 
 
             <div class="pt-5 mt-5">
-              <h3 class="mb-5">3 Comments</h3>
+              <h3 class="mb-5"><?php echo count($comments); ?> Comments</h3>
               <ul class="comment-list">
+                <?php foreach($comments as $comment):
+                  $created_at = strtotime($comment['commentCreatedAt']); ?>
                 <li class="comment">
                   <div class="comment-body">
-                    <h3>John Doe</h3>
-                    <div class="meta mb-3">November 13, 2019 at 2:21pm</div>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Pariatur quidem laborum necessitatibus, ipsam impedit vitae autem, eum officia, fugiat saepe enim sapiente iste iure! Quam voluptas earum impedit necessitatibus, nihil?</p>
+                    <h3><?php echo $comment['pseudo']; ?></h3>
+                    <div class="meta mb-3"><?php echo date('F,d Y \a\t g:ia', $created_at); ?></div>
+                    <p><?php echo $comment['commentContent']; ?></p>
                   </div>
                 </li>
+                <?php endforeach; ?>
 
-                <li class="comment">
-                  <div class="comment-body">
-                    <h3>John Doe</h3>
-                    <div class="meta mb-3">November 13, 2019 at 2:21pm</div>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Pariatur quidem laborum necessitatibus, ipsam impedit vitae autem, eum officia, fugiat saepe enim sapiente iste iure! Quam voluptas earum impedit necessitatibus, nihil?</p>
-                  </div>
-                </li>
-
-                <li class="comment">
-                  <div class="comment-body">
-                    <h3>John Doe</h3>
-                    <div class="meta mb-3">November 13, 2019 at 2:21pm</div>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Pariatur quidem laborum necessitatibus, ipsam impedit vitae autem, eum officia, fugiat saepe enim sapiente iste iure! Quam voluptas earum impedit necessitatibus, nihil?</p>
-                  </div>
-                </li>
+                
               </ul>
               <!-- END comment-list -->
 
