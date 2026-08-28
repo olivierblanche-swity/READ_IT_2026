@@ -33,3 +33,21 @@ function findAllByPostId(PDO $conn, string $id): array
     unset($rs);
     return $tags;
 }
+
+function findAllByTagId(PDO $conn, string $id): array
+{
+    $sql = "SELECT p.*
+            FROM posts p
+            JOIN posts_has_tags pht ON p.id = pht.post_id
+            WHERE pht.tag_id = :id
+            ORDER BY p.created_at DESC
+            LIMIT 10;";
+
+    $rs = $conn->prepare($sql);
+    $rs->bindValue(':id', $id, PDO::PARAM_INT);
+    $rs->execute();
+    $posts = $rs->fetchAll(PDO::FETCH_ASSOC);
+    $rs->closeCursor();
+    unset($rs);
+    return $posts;
+}

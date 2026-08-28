@@ -12,13 +12,13 @@ RewriteRule ^ - [L]
 # PATTERN tags/id/slug(title).html
 # TARGET : index.php?tags=show&id=x
 
-RewriteRule ^tags\/([1-9][0-9]*)\/([0-9a-z][a-z0-9\-]*[0-9a-z])\.html$ ?tags=show&id=$1 [L]
+RewriteRule ^tags\/([1-9][0-9]*)\/([0-9a-z][a-z0-9\-]*[0-9a-z])\.html$ index.php?tags=show&id=$1 [L,QSA]
 
 # ROUTE CATEGORIES.SHOW
 # PATTERN categories/id/slug(title).html
 # TARGET : index.php?categories=show&id=x
 
-RewriteRule ^categories\/([1-9][0-9]*)\/([0-9a-z][a-z0-9\-]*[0-9a-z])\.html$ ?categories=show&id=$1 [L]
+RewriteRule ^categories\/([1-9][0-9]*)\/([0-9a-z][a-z0-9\-]*[0-9a-z])\.html$ index.php?categories=show&id=$1 [L,QSA]
 
 # ROUTE POSTS.SHOW
 # PATTERN posts/id/slug(title).html
