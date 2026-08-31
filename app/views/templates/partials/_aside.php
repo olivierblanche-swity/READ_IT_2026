@@ -30,11 +30,10 @@
 <div class="sidebar-box ftco-animate">
   <h3>Tag Cloud</h3>
   <div class="tagcloud">
-    <?php include '../app/views//templates/tags/_index.php'; ?>
+    <?php include '../app/views/templates/tags/_index.php'; ?>
 
   </div>
 </div>
 
-</div>
 
-</div>
+
