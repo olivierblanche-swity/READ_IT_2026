@@ -1,6 +1,10 @@
 <?php 
 /**
  * @var array $comments
+ * 
+ * var disp $comments array ( commentsId, pseudo, commentContent, commentCreatedAt)
+ * 
+ *  echo date('F,d Y \a\t g:ia', $created_at);  F=mois d=jour Y annee 4 chif \a\t =at g=heure i=sec a=am/pm
  */
 ?>
 

@@ -1,6 +1,8 @@
 <?php /**
  * 
  * @var array $author
+ * 
+ * var disp $author array (authorId, lastname, firstname, biography, authorImage )
  */
 ?>
 

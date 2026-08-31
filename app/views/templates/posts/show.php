@@ -16,30 +16,12 @@
 
 ?>
 
-<p class="mb-5">
-  <img src="images/<?php echo $post['image'] ?>" alt="<?php echo htmlspecialchars($post['title']); ?>" class="img-fluid">
-</p>
-
-<h1 class="mb-3 h1"><?php echo htmlspecialchars($post['title']); ?></h1>
-<p><?php echo htmlspecialchars($post['content']); ?></p>
-
-<h2 class="mb-3 mt-5">#2. Creative WordPress Themes</h2>
-<p>Temporibus ad error suscipit exercitationem hic molestiae totam obcaecati rerum, eius aut, in. Exercitationem atque quidem tempora maiores ex architecto voluptatum aut officia doloremque. Error dolore voluptas, omnis molestias odio dignissimos culpa ex earum nisi consequatur quos odit quasi repellat qui officiis reiciendis incidunt hic non? Debitis commodi aut, adipisci.</p>
-<p class="mb-5">
-  <img src="images/image_2.jpg" alt="" class="img-fluid">
-</p>
-<p>Quisquam esse aliquam fuga distinctio, quidem delectus veritatis reiciendis. Nihil explicabo quod, est eos ipsum. Unde aut non tenetur tempore, nisi culpa voluptate maiores officiis quis vel ab consectetur suscipit veritatis nulla quos quia aspernatur perferendis, libero sint. Error, velit, porro. Deserunt minus, quibusdam iste enim veniam, modi rem maiores.</p>
-
+<!-- posts -->
+<?php include '../app/views/templates/posts/_show.php'; ?>
 
 
 <!-- tags -->
-<div class="tag-widget post-tag-container mb-5 mt-5">
-  <div class="tagcloud">
-    <?php foreach ($tags as $tag): ?>
-      <a href="tags/<?php echo $tag['tagsId']; ?>/<?php echo Core\Helpers\slugify($tag['tagsName']); ?>.html" class="tag-cloud-link"><?php echo htmlspecialchars($tag['tagsName']); ?></a>
-    <?php endforeach; ?>
-  </div>
-</div>
+<?php include '../app/views/templates/tags/postsTag.php'; ?>
 
 
 <!-- authors -->
