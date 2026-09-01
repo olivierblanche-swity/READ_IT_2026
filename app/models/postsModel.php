@@ -59,5 +59,42 @@ function findOneById(PDO $conn, string $id): array
     return $post;
 }
 
+function search(PDO $conn, string $query): array
+{
+    $search = trim(str_replace('-', ' ', $query));
 
+    if ($search === '') {
+        return findAll($conn);
+    }
 
+    $terms = preg_split('/\s+/', $search);
+    $terms = array_filter($terms, fn($term) => $term !== '');
+
+    if (empty($terms)) {
+        return findAll($conn);
+    }
+
+    $conditions = [];
+    $params = [];
+
+    foreach ($terms as $index => $term) {
+        $conditions[] = "title LIKE :term{$index}";
+        $params[":term{$index}"] = '%' . $term . '%';
+    }
+
+    $sql = "SELECT *
+            FROM posts
+            WHERE " . implode(' OR ', $conditions) . "
+            ORDER BY created_at DESC;";
+
+    $rs = $conn->prepare($sql);
+    foreach ($params as $key => $value) {
+        $rs->bindValue($key, $value, PDO::PARAM_STR);
+    }
+    $rs->execute();
+    $posts = $rs->fetchAll(PDO::FETCH_ASSOC);
+    $rs->closeCursor();
+    unset($rs);
+
+    return $posts;
+}

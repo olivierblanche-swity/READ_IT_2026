@@ -12,25 +12,31 @@ RewriteRule ^ - [L]
 # PATTERN contact.html
 # TARGET : contact.php?contact=show
 
-RewriteRule ^contact.html$ index.php?contact=show [L,QSA]
+RewriteRule ^contact.html$ ?contact=show [L,QSA]
 
 # ROUTE TAGS.SHOW
 # PATTERN tags/id/slug(title).html
 # TARGET : index.php?tags=show&id=x
 
-RewriteRule ^tags\/([1-9][0-9]*)\/([0-9a-z][a-z0-9\-]*[0-9a-z])\.html$ index.php?tags=show&id=$1 [L,QSA]
+RewriteRule ^tags\/([1-9][0-9]*)\/([0-9a-z][a-z0-9\-]*[0-9a-z])\.html$ ?tags=show&id=$1 [L,QSA]
 
 # ROUTE CATEGORIES.SHOW
 # PATTERN categories/id/slug(title).html
 # TARGET : index.php?categories=show&id=x
 
-RewriteRule ^categories\/([1-9][0-9]*)\/([0-9a-z][a-z0-9\-]*[0-9a-z])\.html$ index.php?categories=show&id=$1 [L,QSA]
+RewriteRule ^categories\/([1-9][0-9]*)\/([0-9a-z][a-z0-9\-]*[0-9a-z])\.html$ ?categories=show&id=$1 [L,QSA]
+
+# ROUTE POSTS.SEARCH.WITH_QUERY
+# PATTERN posts/search/term-with-hyphen
+# TARGET : index.php?posts=search&query=term with hyphen
+
+RewriteRule ^posts/search/([^/]+)$ ?posts=search&query=$1 [L,QSA]
 
 # ROUTE POSTS.SHOW
 # PATTERN posts/id/slug(title).html
 # TARGET : index.php?posts=show&id=x
 
- RewriteRule ^posts\/([1-9][0-9]*)\/([0-9a-z][a-z0-9\-]*[0-9a-z])\.html$ ?posts=show&id=$1 [L]
+RewriteRule ^posts\/([1-9][0-9]*)\/([0-9a-z][a-z0-9\-]*[0-9a-z])\.html$ ?posts=show&id=$1 [L,QSA]
 
 #-----------------------------
 # FALLBACK

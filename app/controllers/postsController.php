@@ -69,3 +69,15 @@ function showAction(PDO $conn, string $id)
     include '../app/views/templates/posts/show.php';
     $content = ob_get_clean();
 }
+
+function searchAction(PDO $conn, string $query)
+{
+    include_once '../app/models/postsModel.php';
+    $posts = PostsModel\search($conn, $query);
+
+    global $title, $content;
+    $title = "search";
+    ob_start();
+    include '../app/views/templates/posts/index.php';
+    $content = ob_get_clean();
+}
