@@ -8,6 +8,12 @@ RewriteRule ^ - [L]
 #----------------------------
 # REGLE DE RE-ECRITURE
 
+# ROUTE CONTACT
+# PATTERN contact.html
+# TARGET : contact.php?contact=show
+
+RewriteRule ^contact.html$ index.php?contact=show [L,QSA]
+
 # ROUTE TAGS.SHOW
 # PATTERN tags/id/slug(title).html
 # TARGET : index.php?tags=show&id=x

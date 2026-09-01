@@ -1,5 +1,10 @@
 <?php
-if (isset($_GET['tags'])):
+
+if (isset($_GET['contact'])):
+     include_once '../app/routers/contact.php';
+    
+
+elseif (isset($_GET['tags'])):
      include_once '../app/routers/tags.php';
 
 elseif (isset($_GET['categories'])):

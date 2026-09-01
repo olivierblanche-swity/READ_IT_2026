@@ -4,6 +4,6 @@ global $conn;
 $categories = \App\Models\CategoriesModel\findAll($conn);
 
 foreach ($categories as $category) : ?>
-    <li><a href="<?php echo rtrim(dirname($_SERVER['SCRIPT_NAME']), '/\\'); ?>/categories/<?php echo $category['id']; ?>/<?php echo Core\Helpers\slugify($category['name']); ?>.html"> <?php echo htmlspecialchars($category['name']); ?> <span class="ion-ios-arrow-forward"></span></a></li>
+    <li><a href="categories/<?php echo $category['id']; ?>/<?php echo Core\Helpers\slugify($category['name']); ?>.html"> <?php echo htmlspecialchars($category['name']); ?> <span class="ion-ios-arrow-forward"></span></a></li>
 
 <?php endforeach; ?>
