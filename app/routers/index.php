@@ -1,8 +1,12 @@
 <?php
 
-if (isset($_GET['contact'])):
+if (isset($_GET['comments']) and $_GET['comments'] == 'add'):
+     include_once '../app/controllers/commentsController.php';
+     \App\Controllers\CommentsController\storeAction($conn);
+
+elseif (isset($_GET['contact'])):
      include_once '../app/routers/contact.php';
-    
+
 
 elseif (isset($_GET['tags'])):
      include_once '../app/routers/tags.php';
