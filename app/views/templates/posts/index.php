@@ -1,6 +1,7 @@
 <?php
 
 /** @var array $posts 
+ * @var int $page
  * ../app/views/templates/posts/index.php
  * 
  * var disp $posts array (array (id,title,created_at,resume,image,content,authors_id, category_id))
@@ -10,9 +11,9 @@
 
 <div class="container">
     <div class="row d-flex">
-        <?php foreach ($posts as $post): 
+        <?php foreach ($posts as $post):
             $created_at = strtotime($post['created_at']);
-            ?>
+        ?>
 
             <div class="col-md-6 d-flex ftco-animate">
 
@@ -40,9 +41,12 @@
     <div class="row mt-5">
         <div class="col text-center">
             <div class="block-27">
-                <ul>
-                    <li><a href="#">+</a></li>
-                </ul>
+                <?php if (!empty($hasMorePosts)): ?>
+                    <?php $publicPath = rtrim(str_replace('\\', '/', dirname($_SERVER['SCRIPT_NAME'])), '/'); ?>
+                    <ul>
+                        <li><a href="<?php echo $publicPath; ?>/page/<?php echo $page + 1; ?>">+</a></li>
+                    </ul>
+                <?php endif; ?>
             </div>
         </div>
     </div>

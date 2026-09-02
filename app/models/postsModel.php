@@ -8,13 +8,16 @@ namespace App\Models\PostsModel;
 
 use PDO;
 
-function findAll(PDO $conn): array
+function findAll(PDO $conn, int $page = 1, bool $withNextPage = false): array
 {
+    $page = max(1, $page);
+    $offset = 0;
+    $limit = $withNextPage ? ($page * 10) + 1 : 10;
 
     $sql = "SELECT *
             FROM posts
             ORDER BY created_at DESC
-            LIMIT 10;";
+            LIMIT {$limit} OFFSET {$offset};";
 
     $rs = $conn->query($sql);
     $posts = $rs->fetchAll(PDO::FETCH_ASSOC);
