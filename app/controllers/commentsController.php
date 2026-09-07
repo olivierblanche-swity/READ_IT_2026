@@ -18,8 +18,7 @@ function storeAction(PDO $conn)
 
     $postId = (int) $_POST['post_id'];
     $post = PostsModel\findOneById($conn, (string) $postId);
-    $basePath = rtrim(str_replace('\\', '/', dirname($_SERVER['SCRIPT_NAME'])), '/');
-    $postUrl = $basePath . '/posts/' . $postId . '/' . Helpers\slugify($post['title']) . '.html';
+    $postUrl = rtrim(PUBLIC_BASE_URL, '/') . '/posts/' . $postId . '/' . Helpers\slugify($post['title']) . '.html';
 
     header('Location: ' . $postUrl);
     exit;

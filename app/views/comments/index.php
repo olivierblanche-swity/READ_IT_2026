@@ -27,5 +27,5 @@
   </ul>
   <!-- FORM -->
 
-  <?php include_once '../app/views/templates/comments/addForm.php'; ?>
+  <?php include_once '../app/views/comments/addForm.php'; ?>
 </div>

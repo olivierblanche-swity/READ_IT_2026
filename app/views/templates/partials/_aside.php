@@ -18,19 +18,19 @@
 </div>
 <div class="sidebar-box ftco-animate">
   <div class="categories">
-    <?php include '../app/views/templates/categories/_index.php'; ?>
+    <?php include '../app/views/categories/_index.php'; ?>
 
   </div>
 </div>
 
 <div class="sidebar-box ftco-animate">
-  <?php include '../app/views/templates/posts/recentPost.php'; ?>
+  <?php include '../app/views/posts/recentPost.php'; ?>
 </div>
 
 <div class="sidebar-box ftco-animate">
   <h3>Tag Cloud</h3>
   <div class="tagcloud">
-    <?php include '../app/views/templates/tags/_index.php'; ?>
+    <?php include '../app/views/tags/_index.php'; ?>
 
   </div>
 </div>

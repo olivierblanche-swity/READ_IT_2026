@@ -17,16 +17,16 @@
 ?>
 
 <!-- posts -->
-<?php include '../app/views/templates/posts/_show.php'; ?>
+<?php include '../app/views/posts/_show.php'; ?>
 
 
 <!-- tags -->
-<?php include '../app/views/templates/tags/postsTag.php'; ?>
+<?php include '../app/views/tags/postsTag.php'; ?>
 
 
 <!-- authors -->
-<?php include '../app/views/templates/authors/show.php'; ?>
+<?php include '../app/views/authors/show.php'; ?>
 
 
 <!-- comments -->
-<?php include '../app/views/templates/comments/index.php'; ?>
+<?php include '../app/views/comments/index.php'; ?>

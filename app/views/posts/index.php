@@ -12,7 +12,7 @@
 <div class="container">
     <div class="row d-flex">
         <?php foreach ($posts as $post):
-            
+
         ?>
 
             <div class="col-md-6 d-flex ftco-animate">
@@ -42,7 +42,7 @@
         <div class="col text-center">
             <div class="block-27">
                 <?php if (!empty($hasMorePosts)): ?>
-                    <?php $publicPath = rtrim(str_replace('\\', '/', dirname($_SERVER['SCRIPT_NAME'])), '/'); ?>
+                    <?php $publicPath = rtrim(PUBLIC_BASE_URL, '/'); ?>
                     <ul>
                         <li><a href="<?php echo $publicPath; ?>/page/<?php echo $page + 1; ?>">+</a></li>
                     </ul>

@@ -25,7 +25,7 @@ function indexAction(PDO $conn)
     global $title, $content;
     $title = "posts";
     ob_start();
-    include '../app/views/templates/posts/index.php';
+    include '../app/views/posts/index.php';
     $content = ob_get_clean();
 }
 
@@ -37,7 +37,7 @@ function tagAction(PDO $conn, string $id)
     global $title, $content;
     $title = "tag";
     ob_start();
-    include '../app/views/templates/posts/index.php';
+    include '../app/views/posts/index.php';
     $content = ob_get_clean();
 }
 
@@ -49,7 +49,7 @@ function categoryAction(PDO $conn, string $id)
     global $title, $content;
     $title = "category";
     ob_start();
-    include '../app/views/templates/posts/index.php';
+    include '../app/views/posts/index.php';
     $content = ob_get_clean();
 }
 
@@ -70,7 +70,7 @@ function showAction(PDO $conn, string $id)
     global $title, $content;
     $title = "posts";
     ob_start();
-    include '../app/views/templates/posts/show.php';
+    include '../app/views/posts/show.php';
     $content = ob_get_clean();
 }
 
@@ -82,6 +82,6 @@ function searchAction(PDO $conn, string $query)
     global $title, $content;
     $title = "search";
     ob_start();
-    include '../app/views/templates/posts/index.php';
+    include '../app/views/posts/index.php';
     $content = ob_get_clean();
 }

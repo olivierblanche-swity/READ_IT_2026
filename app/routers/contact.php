@@ -10,7 +10,7 @@ switch ($_GET['contact']):
         global $title, $content;
         $title = "contact";
         ob_start();
-        include '../app/views/templates/contact/contactForm.php';
+        include '../app/views/contact/contactForm.php';
         $content = ob_get_clean();
         break;
 
