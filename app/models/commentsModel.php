@@ -2,7 +2,7 @@
 
 namespace App\Models\CommentsModel;
 
-use  \PDO;
+use \PDO;
 
 function findAllByPostId(PDO $conn, string $id):array 
 {
@@ -19,7 +19,7 @@ function findAllByPostId(PDO $conn, string $id):array
     return $comments;
 }
 
-function insertOne(\PDO $conn)
+function insertOne(PDO $conn)
 {
     $sql = "INSERT INTO comments 
             SET pseudo = :pseudo,

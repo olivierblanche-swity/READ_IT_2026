@@ -6,39 +6,26 @@
 
 namespace App\Models\PostsModel;
 
-use PDO;
+use \PDO;
 
-function findAll(PDO $conn, int $page = 1, bool $withNextPage = false): array
+function findAll(PDO $conn, int $page = 1, bool $withNextPage = false, int $limit = 10): array
 {
     $page = max(1, $page);
-    $offset = 0;
-    $limit = $withNextPage ? ($page * 10) + 1 : 10;
+    $limit = max(1, $limit);
+    $offset = ($page - 1) * $limit;
+    $queryLimit = $withNextPage ? $limit + 1 : $limit;
 
-    $sql = "SELECT *
-            FROM posts
-            ORDER BY created_at DESC
-            LIMIT {$limit} OFFSET {$offset};";
-
-    $rs = $conn->query($sql);
-    $posts = $rs->fetchAll(PDO::FETCH_ASSOC);
-    $rs->closeCursor();
-    unset($rs);
-    return $posts;
-}
-
-function findlast(PDO $conn): array
-{
-
-    $sql = "SELECT p.id AS postsId, p.title AS postsTitle, p.image AS postsImage,
-            p.created_at AS postsCreatedAt, a.id AS authorId,
-            a.firstname, a.lastname, COUNT(c.id) AS commentsCount
+    $sql = "SELECT p.*, a.id AS authorId, a.firstname, a.lastname,
+                   COUNT(c.id) AS commentsCount
             FROM posts p
             JOIN authors a ON p.author_id = a.id
             LEFT JOIN comments c ON c.post_id = p.id
-            GROUP BY p.id, p.title, p.image, p.created_at,
+            GROUP BY p.id, p.title, p.created_at, p.resume, p.image,
+                     p.content, p.author_id, p.category_id,
                      a.id, a.firstname, a.lastname
             ORDER BY p.created_at DESC
-            LIMIT 3;";
+            LIMIT {$queryLimit}
+            OFFSET {$offset};";
 
     $rs = $conn->query($sql);
     $posts = $rs->fetchAll(PDO::FETCH_ASSOC);

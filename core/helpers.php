@@ -27,3 +27,6 @@ function slugify (string $str){
 
 // fonction pour le format des dates 
 
+function dateFormator(string $date, string $format ="d/M/Y"){
+    return date($format, strtotime($date));
+}

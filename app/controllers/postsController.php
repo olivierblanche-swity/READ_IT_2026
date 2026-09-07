@@ -17,10 +17,10 @@ function indexAction(PDO $conn)
 {
     include_once '../app/models/postsModel.php';
     $page = max(1, (int) ($_GET['page'] ?? 1));
-    $posts = PostsModel\findAll($conn, $page, true);
     $postsPerPage = 10;
-    $hasMorePosts = count($posts) > ($page * $postsPerPage);
-    $posts = array_slice($posts, 0, $page * $postsPerPage);
+    $posts = PostsModel\findAll($conn, $page, true, $postsPerPage);
+    $hasMorePosts = count($posts) > $postsPerPage;
+    $posts = array_slice($posts, 0, $postsPerPage);
 
     global $title, $content;
     $title = "posts";
