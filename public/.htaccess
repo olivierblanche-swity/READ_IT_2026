@@ -30,7 +30,7 @@ RewriteRule ^categories\/([1-9][0-9]*)\/([0-9a-z][a-z0-9\-]*[0-9a-z])\.html$ ?ca
 # PATTERN posts/search/term-with-hyphen
 # TARGET : index.php?posts=search&query=term with hyphen
 
-RewriteRule ^posts/search/([^/]+)$ ?posts=search&query=$1 [L,QSA]
+RewriteRule ^posts/search/([^/]+)$ index.php?posts=search&query=$1 [L,QSA,B]
 
 # ROUTE POSTS.PAGINATION
 # PATTERN page/numero

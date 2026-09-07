@@ -9,7 +9,7 @@
 ?>
 
 <div class="sidebar-box">
-  <form action="posts/search" method="get" class="search-form" onsubmit="const value = this.query.value.trim(); if (value !== '') { window.location.href = 'posts/search/' + value.trim().replace(/\s+/g, '-'); } return false;">
+  <form action="posts/search" method="get" class="search-form" onsubmit="event.preventDefault(); const value = this.elements.query.value.trim(); if (value !== '') { const baseUrl = document.querySelector('base').href.replace(/\/?$/, '/'); window.location.assign(baseUrl + 'posts/search/' + encodeURIComponent(value.replace(/\s+/g, '-'))); }">
     <div class="form-group">
       <span class="icon icon-search"></span>
       <input name="query" type="text" class="form-control" placeholder="Type a keyword and hit enter">
