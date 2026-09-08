@@ -1,0 +1,52 @@
+CONSIGNES :
+
+    ROUTE PAR DEFAUT: liste des posts (les 10 derniers)
+    PATTERN: /
+    CTRL: postsControleur
+    ACTION: index
+      > Affichage des 1 derniers posts
+        Title + resume + date (jour, mois, année séparément)
+      > Le lien READ MORE vers le détails du post
+
+    ROUTE DU DETAIL D'UN POST
+    PATTERN: /?postID=x
+    CTRL: postsControleur
+    ACTION: show
+      ETAPE 1
+        > Image + title + content
+      ETAPE 2 (voir astuces)
+        > Liste des tags du post
+      ETAPE 3 (voir astuces)
+        > Affichage de l'image, du nom et de la bio de l'auteur
+      ETAPE 4 (voir astuces)
+        > Liste des comments + formulaire en POST (vers ?comments=add)
+
+    ROUTE DU CONTACT:
+    PATTERN: /?contact
+    CTRL: Aucun
+    ACTION: Aucune
+      > On charge le partial _contact.php
+
+    ROUTE DE L'AJOUT D'UN COMMENTAIRE
+    PATTERN: ?comments=add
+    CTRL: commentsControleur.php
+    ACTION: store
+      > Fait un INSERT dans la table avec les données $_POST
+      > Fait une redirection vers la page du post (voir astuces)
+
+    LE MENU: 2 liens statiques
+      home: ?
+      contact: ?contact
+
+    INTEGRATIONS DYNAMIQUES DANS LE TEMPLATE
+      CATEGORIES
+        CTRL: categoriesControleur
+        ACTION: index
+
+      RECENT BLOG
+        CTRL: postsControleur
+        ACTION: lastestIndex
+
+      TAG CLOUD
+        CTRL: tagsControleur
+        ACTION: index
