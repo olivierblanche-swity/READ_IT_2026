@@ -16,3 +16,7 @@ function loginFormAction(PDO $conn) {
         $content = ob_get_clean();
 }
 
+function loginAction (PDO $conn , array $userData) {
+        
+}
+

@@ -8,6 +8,12 @@ RewriteRule ^ - [L]
 #----------------------------
 # REGLE DE RE-ECRITURE
 
+# ROUTE USERS.LOGIN
+# PATTERN /users/login
+# TARGET : ?users=login
+
+RewriteRule ^users\/login$ index.php?users=login [L,QSA]
+
 # ROUTE USERS.LOGINFORM
 # PATTERN /users/login-form
 # TARGET : ?users=login-form
