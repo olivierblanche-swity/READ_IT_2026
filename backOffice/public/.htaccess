@@ -8,7 +8,53 @@ RewriteRule ^ - [L]
 #----------------------------
 # REGLE DE RE-ECRITURE
 
+# ROUTE DES CATEGORIES-----------------------------
 
+# UPDATE CATEGORIE
+# PATERN categories/update/id=x
+# URL index.php?categories=update&id=x
+
+RewriteRule ^categories\/update\/([1-9][0-9]*)$ index.php?categories=update&id=$1 [L]
+
+# MODIFICATION CATEGORIE
+# PATERN categories/edit/form/id=x
+# URL index.php?categories=editForm&id=x
+
+RewriteRule ^categories\/edit\/form\/([1-9][0-9]*)$ index.php?categories=editForm&id=$1 [L]
+
+# SUPPRESSION CATEGORIE
+# PATERN categories/delete/id
+# URL index.php?categories=delete&id=x
+
+RewriteRule ^categories\/delete\/([1-9][0-9]*)$ index.php?categories=delete&id=$1 [L]
+
+
+# AJOUT CATEGORIE
+# PATERN categories/add/insert
+# URL index.php?categories=insert
+
+RewriteRule ^categories\/add\/insert$ index.php?categories=insert [L]
+
+# AJOUT CATEGORIE
+# PATERN categories/add/form
+# URL index.php?categories=addForm
+
+RewriteRule ^categories\/add\/form$ index.php?categories=addForm [L]
+
+
+# LISTE DES CATEGORIES
+# PATERN categories
+# URL index.php?categories=index
+
+RewriteRule ^categories$ index.php?categories=index [L]
+
+# ROUTE USERS-----------------------------------
+
+# LOGOUT
+# PATERN users/logout
+# URL index.php?users=logout
+
+RewriteRule ^users\/logout$ index.php?users=logout [L]
 
 #-----------------------------
 # FALLBACK

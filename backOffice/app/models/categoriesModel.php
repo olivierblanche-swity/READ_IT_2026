@@ -8,7 +8,7 @@ function findAll(PDO $conn): array
 {
     $sql = "SELECT *
             FROM categories 
-            ORDER BY name ASC;";
+            ORDER BY id ASC;";
 
     $rs = $conn->query($sql);
     $categories = $rs->fetchAll(PDO::FETCH_ASSOC);
@@ -17,20 +17,48 @@ function findAll(PDO $conn): array
     return $categories;
 }
 
-function findAllByCategoryId(PDO $conn, string $id): array
+function findOneById(PDO $conn, int $id)
 {
 
     $sql = "SELECT *
-            FROM posts
-            WHERE category_id = :id
-            ORDER BY created_at DESC
-            LIMIT 10;";
+            FROM categories
+            WHERE id= :id;";
 
     $rs = $conn->prepare($sql);
     $rs->bindValue(':id', $id, PDO::PARAM_INT);
     $rs->execute();
-    $posts = $rs->fetchAll(PDO::FETCH_ASSOC);
+    $category = $rs->fetch(PDO::FETCH_ASSOC);
     $rs->closeCursor();
     unset($rs);
-    return $posts;
+    return $category;
+}
+
+function insertAction(PDO $conn, array $data)
+{
+    $sql = "INSERT INTO categories
+            SET name = :name;";
+
+    $rs = $conn->prepare($sql);
+    $rs->bindValue(':name', $data['name'], PDO::PARAM_STR);
+    $rs->execute();
+    return intval($conn->lastInsertId());
+}
+
+function deleteAction(PDO $conn, int $id)
+{
+    $sql = "DELETE FROM categories
+            WHERE id = :id;";
+    $rs = $conn->prepare($sql);
+    $rs->bindValue(':id', $id, PDO::PARAM_INT);
+    return intval($rs->execute());
+}
+
+function updateAction(PDO $conn, array $data){
+    $sql = "UPDATE categories
+            SET name = :name
+            WHERE id = :id;";
+    $rs = $conn->prepare($sql);
+    $rs->bindValue(':name', $data['name'] ?? '', PDO::PARAM_STR);
+    $rs->bindValue(':id', $data['id'] ?? 0, PDO::PARAM_INT);
+    return intval($rs->execute());
 }

@@ -1,13 +1,49 @@
 <?php
 
-use App\Controllers\PostsController;
 
-include_once '../app/controllers/postsController.php';
+use \App\Controllers\CategoriesController;
 
-switch ($_GET['categories']):
 
-    case 'show':
-        PostsController\categoryAction($conn, $_GET['id']);
+include_once '../app/controllers/categoriesController.php';
+
+$categoryAction = $_GET['categories'] ?? null;
+$id = $_GET['id'] ?? $_POST['id'] ?? null;
+
+switch ($categoryAction):
+
+    case 'index':
+        CategoriesController\indexAction($conn);
         break;
 
+    case 'addForm':
+        CategoriesController\addFormAction();
+        break;
+
+    case 'insert':
+        CategoriesController\insertAction($conn, $_POST);
+        break;
+
+    case 'delete':
+        if ($id === null) {
+            break;
+        }
+        CategoriesController\deleteAction($conn, (int) $id);
+        break;
+
+    case 'editForm':
+        if ($id === null) {
+            break;
+        }
+        CategoriesController\editFormAction($conn, (int) $id);
+        break;
+
+    case 'update':
+        if ($id === null) {
+            break;
+        }
+        CategoriesController\updateAction($conn, [
+                                    'id' => (int) $id,
+                                    'name' => $_POST['name'] ?? ''
+                                    ]);
+        break;
 endswitch;

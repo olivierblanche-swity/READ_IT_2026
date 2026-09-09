@@ -12,7 +12,7 @@
     <meta name="author" content="" />
     <link rel="icon" href="../../favicon.ico" />
 
-    <title>BACKOFFICE - WED PROJECT</title>
+    <title>BACKOFFICE - <?php echo $title; ?></title>
 
     <!-- Bootstrap core CSS -->
     <!-- Font Awesome -->
