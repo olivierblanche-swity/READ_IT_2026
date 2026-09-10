@@ -1,0 +1,36 @@
+<?php
+/**@var array $user */
+?>
+
+<div class="col-md-6">
+    <div class="page-header">
+        <h1>Ajout d'un utilisateur</h1>
+        <h4><a href="<?php echo BACKOFFICE_BASE_URL; ?>users">Retour aux utilisateurs</a></h4>
+    </div>
+    <h4>Nouvel Utilisateur : </h4>
+    <form action="<?php echo BACKOFFICE_BASE_URL; ?>users/update/<?php echo $user['id']; ?>" method="post">
+        <div>
+            <label for="login">login : </label>
+            <input type="text" id="login" name="login" placeholder="" value="<?php echo $user['login']; ?>"  />
+        </div>
+        <label for="pwd">Nouveau mot de passe :</label>
+            <input type="password" id="pwd" name="pwd"
+                    autocomplete="new-password"
+                    placeholder="Laisser vide pour conserver le mot de passe actuel">
+        <div>
+            <label for="firstname">Prénom : </label>
+            <input type="text" id="name" name="firstname" value="<?php echo $user['firstname']; ?>"   />
+        </div>
+        <div>
+            <label for="lastname">Nom : </label>
+            <input type="text" id="name" name="lastname" value="<?php echo $user['lastname']; ?>" value="" />
+        </div>
+        <div>
+            <label for="status">status : </label>
+            <input id="status" name="status" value="<?php echo $user['status']; ?>"></input>
+        </div>
+        <div>
+            <input type="submit" class="btn btn-lg btn-primary" value="Ajouter" />
+        </div>
+    </form>
+</div>

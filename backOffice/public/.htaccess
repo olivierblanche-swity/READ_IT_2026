@@ -130,6 +130,44 @@ RewriteRule ^categories$ index.php?categories=index [L]
 
 # ROUTE USERS-----------------------------------
 
+# UPDATE USERS
+# PATERN users/update/id=x
+# URL index.php?users=update&id=x
+
+RewriteRule ^users\/update\/([1-9][0-9]*)$ index.php?users=update&id=$1 [L]
+
+# MODIFICATION USERS
+# PATERN users/edit/form/id=x
+# URL index.php?users=editForm&id=x
+
+RewriteRule ^users\/edit\/form\/([1-9][0-9]*)$ index.php?users=editForm&id=$1 [L]
+
+# SUPPRESSION USERS
+# PATERN users/delete/id
+# URL index.php?users=delete&id=x
+
+RewriteRule ^users\/delete\/([1-9][0-9]*)$ index.php?users=delete&id=$1 [L]
+
+
+# AJOUT USERS
+# PATERN users/add/insert
+# URL index.php?users=insert
+
+RewriteRule ^users\/add\/insert$ index.php?users=insert [L]
+
+# AJOUT USERS
+# PATERN users/add/form
+# URL index.php?users=addForm
+
+RewriteRule ^users\/add\/form$ index.php?users=addForm [L]
+
+
+# LISTE DES USERS
+# PATERN users
+# URL index.php?users=index
+
+RewriteRule ^users$ index.php?users=index [L]
+
 # LOGOUT
 # PATERN users/logout
 # URL index.php?users=logout

@@ -38,6 +38,10 @@
             <li><a href="<?php echo BACKOFFICE_BASE_URL; ?>posts">Liste des posts</a></li>
             <li><a href="<?php echo BACKOFFICE_BASE_URL; ?>posts/add/form">Ajouter un post</a></li>
             <li role="separator" class="divider"></li>
+            <li class="dropdown-header">GESTION DES AUTEURS</li>
+            <li><a href="<?php echo BACKOFFICE_BASE_URL; ?>authors">Liste des auteurs</a></li>
+            <li><a href="<?php echo BACKOFFICE_BASE_URL; ?>authors/add/form">Ajouter un auteur</a></li>
+            <li role="separator" class="divider"></li>
             <li class="dropdown-header">GESTION DES CATÉGORIES</li>
             <li><a href="<?php echo BACKOFFICE_BASE_URL; ?>categories">Liste des catégories</a></li>
             <li><a href="<?php echo BACKOFFICE_BASE_URL; ?>categories/add/form">Ajouter une catégorie</a></li>
@@ -49,11 +53,6 @@
             <li class="dropdown-header">GESTION DES UTILISATEURS</li>
             <li><a href="<?php echo BACKOFFICE_BASE_URL; ?>users">Liste des utilisateurs</a></li>
             <li><a href="<?php echo BACKOFFICE_BASE_URL; ?>users/add/form">Ajouter un utilisateur</a></li>
-            <li role="separator" class="divider"></li>
-            <li class="dropdown-header">GESTION DES AUTEURS</li>
-            <li><a href="<?php echo BACKOFFICE_BASE_URL; ?>authors">Liste des auteurs</a></li>
-            <li><a href="<?php echo BACKOFFICE_BASE_URL; ?>authors/add/form">Ajouter un auteur</a></li>
-            
           </ul>
         </li>
         <li><a href="<?php echo BACKOFFICE_BASE_URL; ?>users/logout">LOGOUT</a></li>
