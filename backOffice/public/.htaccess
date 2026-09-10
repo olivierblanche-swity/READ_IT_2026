@@ -8,6 +8,46 @@ RewriteRule ^ - [L]
 #----------------------------
 # REGLE DE RE-ECRITURE
 
+# ROUTE DES AUTHORS-----------------------------
+
+# UPDATE AUTHORS
+# PATERN authors/update/id=x
+# URL index.php?authors=update&id=x
+
+RewriteRule ^authors\/update\/([1-9][0-9]*)$ index.php?authors=update&id=$1 [L]
+
+# MODIFICATION AUTHORS
+# PATERN authors/edit/form/id=x
+# URL index.php?authors=editForm&id=x
+
+RewriteRule ^authors\/edit\/form\/([1-9][0-9]*)$ index.php?authors=editForm&id=$1 [L]
+
+# SUPPRESSION AUTHORS
+# PATERN authors/delete/id
+# URL index.php?authors=delete&id=x
+
+RewriteRule ^authors\/delete\/([1-9][0-9]*)$ index.php?authors=delete&id=$1 [L]
+
+
+# AJOUT AUTHORS
+# PATERN authors/add/insert
+# URL index.php?authors=insert
+
+RewriteRule ^authors\/add\/insert$ index.php?authors=insert [L]
+
+# AJOUT AUTHORS
+# PATERN authors/add/form
+# URL index.php?authors=addForm
+
+RewriteRule ^authors\/add\/form$ index.php?authors=addForm [L]
+
+
+# LISTE DES AUTHORS
+# PATERN authors
+# URL index.php?authors=index
+
+RewriteRule ^authors$ index.php?authors=index [L]
+
 # ROUTE DES TAGS-----------------------------
 
 # UPDATE TAGS
@@ -29,7 +69,7 @@ RewriteRule ^tags\/edit\/form\/([1-9][0-9]*)$ index.php?tags=editForm&id=$1 [L]
 RewriteRule ^tags\/delete\/([1-9][0-9]*)$ index.php?tags=delete&id=$1 [L]
 
 
-# AJOUT TAGQ
+# AJOUT TAGS
 # PATERN tags/add/insert
 # URL index.php?tags=insert
 

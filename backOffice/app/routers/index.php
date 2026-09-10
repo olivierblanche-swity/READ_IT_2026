@@ -1,28 +1,20 @@
 <?php
 
      /**
-      * 4  route des tags
-      * PATTERN: tags=index
-      * CTRL:TagsController
-      * ACTION: indexAction
-      * 
+      * 5  route des authors
       */
-     if (isset($_GET['tags'])):
+     if (isset($_GET['authors'])):
+          include_once '../app/routers/authors.php';
+     /** 4  route des tags
+      */
+     elseif (isset($_GET['tags'])):
           include_once '../app/routers/tags.php';
-     /** 3  route des categories
-      * PATTERN: catagories=index
-      * CTRL:CategoriesController
-      * ACTION: indexAction
-      * 
+     /** 3  route des categories 
       */
      elseif (isset($_GET['categories'])):
           include_once '../app/routers/categories.php';
      /**
       * 2  route des users
-      * PATTERN: /
-      * CTRL:UsersController
-      * ACTION: logoutAction
-      * 
       */
      elseif (isset($_GET['users'])):
           include_once '../app/routers/users.php';
