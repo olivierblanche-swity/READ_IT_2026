@@ -1,13 +1,21 @@
 <?php
 
      /**
-      * 3  route des categories
+      * 4  route des tags
+      * PATTERN: tags=index
+      * CTRL:TagsController
+      * ACTION: indexAction
+      * 
+      */
+     if (isset($_GET['tags'])):
+          include_once '../app/routers/tags.php';
+     /** 3  route des categories
       * PATTERN: catagories=index
       * CTRL:CategoriesController
       * ACTION: indexAction
       * 
       */
-     if (isset($_GET['categories'])):
+     elseif (isset($_GET['categories'])):
           include_once '../app/routers/categories.php';
      /**
       * 2  route des users

@@ -1,14 +1,14 @@
 <?php
 
-namespace App\Models\TagsModel;
+namespace App\Models\tagsModel;
 
-use \PDO;
+use  \PDO;
 
 function findAll(PDO $conn): array
 {
     $sql = "SELECT *
             FROM tags 
-            ORDER BY name ASC;";
+            ORDER BY id ASC;";
 
     $rs = $conn->query($sql);
     $tags = $rs->fetchAll(PDO::FETCH_ASSOC);
@@ -17,37 +17,48 @@ function findAll(PDO $conn): array
     return $tags;
 }
 
-function findAllByPostId(PDO $conn, string $id): array
+function findOneById(PDO $conn, int $id)
 {
-    $sql = "SELECT t.id AS tagsId, t.name AS tagsName 
-            FROM posts_has_tags pht
-            JOIN tags t ON pht.tag_id = t.id
-            WHERE post_id = :id
-            ORDER BY t.name ASC;";
+
+    $sql = "SELECT *
+            FROM tags
+            WHERE id= :id;";
 
     $rs = $conn->prepare($sql);
     $rs->bindValue(':id', $id, PDO::PARAM_INT);
     $rs->execute();
-    $tags = $rs->fetchAll(PDO::FETCH_ASSOC);
+    $tag = $rs->fetch(PDO::FETCH_ASSOC);
     $rs->closeCursor();
     unset($rs);
-    return $tags;
+    return $tag;
 }
 
-function findAllByTagId(PDO $conn, string $id): array
+function insertAction(PDO $conn, array $data)
 {
-    $sql = "SELECT p.*
-            FROM posts p
-            JOIN posts_has_tags pht ON p.id = pht.post_id
-            WHERE pht.tag_id = :id
-            ORDER BY p.created_at DESC
-            LIMIT 10;";
+    $sql = "INSERT INTO tags
+            SET name = :name;";
 
     $rs = $conn->prepare($sql);
-    $rs->bindValue(':id', $id, PDO::PARAM_INT);
+    $rs->bindValue(':name', $data['name'], PDO::PARAM_STR);
     $rs->execute();
-    $posts = $rs->fetchAll(PDO::FETCH_ASSOC);
-    $rs->closeCursor();
-    unset($rs);
-    return $posts;
+    return intval($conn->lastInsertId());
+}
+
+function deleteAction(PDO $conn, int $id)
+{
+    $sql = "DELETE FROM tags
+            WHERE id = :id;";
+    $rs = $conn->prepare($sql);
+    $rs->bindValue(':id', $id, PDO::PARAM_INT);
+    return intval($rs->execute());
+}
+
+function updateAction(PDO $conn, array $data){
+    $sql = "UPDATE tags
+            SET name = :name
+            WHERE id = :id;";
+    $rs = $conn->prepare($sql);
+    $rs->bindValue(':name', $data['name'] ?? '', PDO::PARAM_STR);
+    $rs->bindValue(':id', $data['id'] ?? 0, PDO::PARAM_INT);
+    return intval($rs->execute());
 }

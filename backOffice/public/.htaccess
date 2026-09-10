@@ -8,6 +8,46 @@ RewriteRule ^ - [L]
 #----------------------------
 # REGLE DE RE-ECRITURE
 
+# ROUTE DES TAGS-----------------------------
+
+# UPDATE TAGS
+# PATERN tags/update/id=x
+# URL index.php?tags=update&id=x
+
+RewriteRule ^tags\/update\/([1-9][0-9]*)$ index.php?tags=update&id=$1 [L]
+
+# MODIFICATION TAGS
+# PATERN tags/edit/form/id=x
+# URL index.php?tags=editForm&id=x
+
+RewriteRule ^tags\/edit\/form\/([1-9][0-9]*)$ index.php?tags=editForm&id=$1 [L]
+
+# SUPPRESSION TAGS
+# PATERN tags/delete/id
+# URL index.php?tags=delete&id=x
+
+RewriteRule ^tags\/delete\/([1-9][0-9]*)$ index.php?tags=delete&id=$1 [L]
+
+
+# AJOUT TAGQ
+# PATERN tags/add/insert
+# URL index.php?tags=insert
+
+RewriteRule ^tags\/add\/insert$ index.php?tags=insert [L]
+
+# AJOUT TAGS
+# PATERN tags/add/form
+# URL index.php?tags=addForm
+
+RewriteRule ^tags\/add\/form$ index.php?tags=addForm [L]
+
+
+# LISTE DES TAGS
+# PATERN tags
+# URL index.php?tags=index
+
+RewriteRule ^tags$ index.php?tags=index [L]
+
 # ROUTE DES CATEGORIES-----------------------------
 
 # UPDATE CATEGORIE
