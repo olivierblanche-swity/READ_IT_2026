@@ -31,7 +31,7 @@ $content = ob_get_clean();
 
 function insertAction(PDO $conn, array $data) {
     include_once '../app/models/categoriesModel.php';
-    $id = CategoriesModel\insertAction($conn, $data);
+    $id = CategoriesModel\insert($conn, $data);
 
     header('location: '. BACKOFFICE_BASE_URL. 'categories');  
 
@@ -39,7 +39,7 @@ function insertAction(PDO $conn, array $data) {
 
 function deleteAction(PDO $conn , int $id) {
     include_once '../app/models/categoriesModel.php';
-    $return = CategoriesModel\deleteAction($conn, $id);
+    $return = CategoriesModel\delete($conn, $id);
 
     header('location: '. BACKOFFICE_BASE_URL. 'categories'); 
 
@@ -60,7 +60,7 @@ $content = ob_get_clean();
 
 function updateAction(PDO $conn ,  array $data) {
     include_once '../app/models/categoriesModel.php';
-    $return = CategoriesModel\updateAction($conn, $data);
+    $return = CategoriesModel\update($conn, $data);
 
     header('location: '. BACKOFFICE_BASE_URL. 'categories'); 
 }

@@ -60,7 +60,7 @@ function findOneById(PDO $conn, string $id): ?array
 }
 
 
-function deleteAction(PDO $conn, int $id)
+function delete(PDO $conn, int $id)
 {
     $conn->beginTransaction();
 
@@ -76,7 +76,7 @@ function deleteAction(PDO $conn, int $id)
     $conn->commit();
 }
 
-function insertAction(PDO $conn, array $data)
+function insert(PDO $conn, array $data)
 {
     $conn->beginTransaction();
     $sql = "INSERT INTO posts SET
@@ -108,7 +108,7 @@ function insertAction(PDO $conn, array $data)
     return $id;
 }
 
-function updateAction(PDO $conn, int $id, array $data)
+function update(PDO $conn, int $id, array $data)
 {
     $conn->beginTransaction();
     $sql = "UPDATE posts SET

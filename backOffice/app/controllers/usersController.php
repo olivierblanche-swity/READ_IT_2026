@@ -55,7 +55,7 @@ $content = ob_get_clean();
 
 function insertAction(PDO $conn, array $data) {
     include_once '../app/models/usersModel.php';
-    $id = UsersModel\insertAction($conn, $data);
+    $id = UsersModel\insert($conn, $data);
 
     header('location: '. BACKOFFICE_BASE_URL. 'users');  
 
@@ -63,7 +63,7 @@ function insertAction(PDO $conn, array $data) {
 
 function deleteAction(PDO $conn , int $id) {
     include_once '../app/models/usersModel.php';
-    $return = UsersModel\deleteAction($conn, $id);
+    $return = UsersModel\delete($conn, $id);
 
     header('location: '. BACKOFFICE_BASE_URL. 'users'); 
 
@@ -84,7 +84,7 @@ $content = ob_get_clean();
 
 function updateAction(PDO $conn ,  array $data) {
     include_once '../app/models/usersModel.php';
-    $return = UsersModel\updateAction($conn, $data);
+    $return = UsersModel\update($conn, $data);
 
     header('location: '. BACKOFFICE_BASE_URL. 'users'); 
 }

@@ -33,7 +33,7 @@ function findOneById(PDO $conn, int $id)
     return $user;
 }
 
-function insertAction(PDO $conn, array $data)
+function insert(PDO $conn, array $data)
 {
 
 
@@ -58,7 +58,7 @@ function insertAction(PDO $conn, array $data)
     return intval($conn->lastInsertId());
 }
 
-function deleteAction(PDO $conn, int $id)
+function delete(PDO $conn, int $id)
 {
     $sql = "DELETE FROM users
             WHERE id = :id;";
@@ -67,7 +67,7 @@ function deleteAction(PDO $conn, int $id)
     return intval($rs->execute());
 }
 
-function updateAction(PDO $conn, array $data)
+function update(PDO $conn, array $data)
 {
     $newPassword = $data['pwd'] ?? '';
     $changePassword = $newPassword !== '';

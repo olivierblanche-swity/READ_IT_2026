@@ -34,7 +34,7 @@ function addFormAction()
 function insertAction(PDO $conn, array $data)
 {
     include_once '../app/models/tagsModel.php';
-    $id = tagsModel\insertAction($conn, $data);
+    $id = tagsModel\insert($conn, $data);
 
     header('location: ' . BACKOFFICE_BASE_URL . 'tags');
 }
@@ -42,7 +42,7 @@ function insertAction(PDO $conn, array $data)
 function deleteAction(PDO $conn, int $id)
 {
     include_once '../app/models/tagsModel.php';
-    $return = TagsModel\deleteAction($conn, $id);
+    $return = TagsModel\delete($conn, $id);
 
     header('location: ' . BACKOFFICE_BASE_URL . 'tags');
 }
@@ -64,7 +64,7 @@ function editFormAction(PDO $conn, int $id)
 function updateAction(PDO $conn,  array $data)
 {
     include_once '../app/models/tagsModel.php';
-    $return = TagsModel\updateAction($conn, $data);
+    $return = TagsModel\update($conn, $data);
 
     header('location: ' . BACKOFFICE_BASE_URL . 'tags');
 }

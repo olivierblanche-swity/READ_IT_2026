@@ -3,7 +3,7 @@
 
 use \App\Controllers\UsersController;
 
-include_once '../app/controllers/usersControllers.php';
+include_once '../app/controllers/usersController.php';
 
 
 switch ($_GET['users']):

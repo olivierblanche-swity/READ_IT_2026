@@ -4,7 +4,7 @@ namespace App\Models\CommentsModel;
 
 use \PDO;
 
-function findAllByPostId(PDO $conn, string $id):array 
+function findAllByPostId(PDO $conn, int $id):array 
 {
     $sql = "SELECT c.id AS commentsId, c.pseudo, c.content AS commentContent, c.created_at AS commentCreatedAt
             FROM comments c
@@ -19,7 +19,7 @@ function findAllByPostId(PDO $conn, string $id):array
     return $comments;
 }
 
-function deleteAction(PDO $conn, int $postId, int $commentId)
+function delete(PDO $conn, int $postId, int $commentId)
 {
     $sql = "DELETE FROM comments
             WHERE id = :id

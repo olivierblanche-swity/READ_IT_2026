@@ -24,7 +24,7 @@ function indexAction(PDO $conn)
 function deleteAction(PDO $conn, int $id)
 {
     include_once '../app/models/postsModel.php';
-    PostsModel\deleteAction($conn, $id);
+    PostsModel\delete($conn, $id);
     header('Location: ' . BACKOFFICE_BASE_URL . 'posts', true, 303);
     exit;
 }
@@ -48,7 +48,7 @@ function addFormAction(PDO $conn)
 function insertAction(PDO $conn, array $data)
 {
     include_once '../app/models/postsModel.php';
-    PostsModel\insertAction($conn, $data);
+    PostsModel\insert($conn, $data);
     header('Location: ' . BACKOFFICE_BASE_URL . 'posts');
     exit;
 }
@@ -74,7 +74,7 @@ function editFormAction(PDO $conn, int $id)
 function updateAction(PDO $conn, int $id, array $data)
 {
     include_once '../app/models/postsModel.php';
-    PostsModel\updateAction($conn, $id, $data);
+    PostsModel\update($conn, $id, $data);
     header('Location: ' . BACKOFFICE_BASE_URL . 'posts');
     exit;
 }

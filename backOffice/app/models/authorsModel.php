@@ -33,7 +33,7 @@ function findOneById(PDO $conn, int $id)
     return $author;
 }
 
-function insertAction(PDO $conn, array $data)
+function insert(PDO $conn, array $data)
 {
     $sql = "INSERT INTO authors
             SET lastname = :lastname,
@@ -50,7 +50,7 @@ function insertAction(PDO $conn, array $data)
     return intval($conn->lastInsertId());
 }
 
-function deleteAction(PDO $conn, int $id)
+function delete(PDO $conn, int $id)
 {
     $sql = "DELETE FROM authors
             WHERE id = :id;";
@@ -59,7 +59,7 @@ function deleteAction(PDO $conn, int $id)
     return intval($rs->execute());
 }
 
-function updateAction(PDO $conn, array $data)
+function update(PDO $conn, array $data)
 {
     $sql = "UPDATE authors
             SET lastname = :lastname,

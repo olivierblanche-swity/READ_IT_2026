@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Models\tagsModel;
+namespace App\Models\TagsModel;
 
 use  \PDO;
 
@@ -33,7 +33,7 @@ function findOneById(PDO $conn, int $id)
     return $tag;
 }
 
-function insertAction(PDO $conn, array $data)
+function insert(PDO $conn, array $data)
 {
     $sql = "INSERT INTO tags
             SET name = :name;";
@@ -44,7 +44,7 @@ function insertAction(PDO $conn, array $data)
     return intval($conn->lastInsertId());
 }
 
-function deleteAction(PDO $conn, int $id)
+function delete(PDO $conn, int $id)
 {
     $sql = "DELETE FROM tags
             WHERE id = :id;";
@@ -53,7 +53,7 @@ function deleteAction(PDO $conn, int $id)
     return intval($rs->execute());
 }
 
-function updateAction(PDO $conn, array $data){
+function update(PDO $conn, array $data){
     $sql = "UPDATE tags
             SET name = :name
             WHERE id = :id;";

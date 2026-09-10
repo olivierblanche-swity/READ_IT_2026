@@ -31,7 +31,7 @@ $content = ob_get_clean();
 
 function insertAction(PDO $conn, array $data) {
     include_once '../app/models/authorsModel.php';
-    $id = AuthorsModel\insertAction($conn, $data);
+    $id = AuthorsModel\insert($conn, $data);
 
     header('location: '. BACKOFFICE_BASE_URL. 'authors');  
 
@@ -39,7 +39,7 @@ function insertAction(PDO $conn, array $data) {
 
 function deleteAction(PDO $conn , int $id) {
     include_once '../app/models/authorsModel.php';
-    $return = AuthorsModel\deleteAction($conn, $id);
+    $return = AuthorsModel\delete($conn, $id);
 
     header('location: '. BACKOFFICE_BASE_URL. 'authors'); 
 
@@ -60,7 +60,7 @@ $content = ob_get_clean();
 
 function updateAction(PDO $conn ,  array $data) {
     include_once '../app/models/authorsModel.php';
-    $return = AuthorsModel\updateAction($conn, $data);
+    $return = AuthorsModel\update($conn, $data);
 
     header('location: '. BACKOFFICE_BASE_URL. 'authors'); 
 }

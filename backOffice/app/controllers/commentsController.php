@@ -24,7 +24,7 @@ function indexAction(PDO $conn, int $postId)
 function deleteAction(PDO $conn, int $postId, int $commentId)
 {
     include_once '../app/models/commentsModel.php';
-    CommentsModel\deleteAction($conn, $postId, $commentId);
+    CommentsModel\delete($conn, $postId, $commentId);
     header('Location: ' . BACKOFFICE_BASE_URL . 'posts/' . $postId . '/comments');
     exit;
 }
