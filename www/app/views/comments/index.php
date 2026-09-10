@@ -16,9 +16,9 @@
       $created_at = strtotime($comment['commentCreatedAt']); ?>
       <li class="comment">
         <div class="comment-body">
-          <h3><?php echo $comment['pseudo']; ?></h3>
+          <h3><?php echo htmlspecialchars($comment['pseudo'] ?? '', ENT_QUOTES, 'UTF-8'); ?></h3>
           <div class="meta mb-3"><?php echo date('F,d Y \a\t g:ia', $created_at); ?></div>
-          <p><?php echo $comment['commentContent']; ?></p>
+          <p><?php echo htmlspecialchars($comment['commentContent'] ?? '', ENT_QUOTES, 'UTF-8'); ?></p>
         </div>
       </li>
     <?php endforeach; ?>

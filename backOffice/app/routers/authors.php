@@ -9,10 +9,6 @@ $id = $_GET['id'] ?? $_POST['id'] ?? null;
 
 switch ($authorsAction):
 
-    case 'index':
-        AuthorsController\indexAction($conn);
-        break;
-
     case 'addForm':
         AuthorsController\addFormAction();
         break;
@@ -47,4 +43,9 @@ switch ($authorsAction):
             'image' => $_POST['image'] ?? ''
         ]);
         break;
+
+    default:
+
+        AuthorsController\indexAction($conn);
+
 endswitch;

@@ -12,7 +12,7 @@
     <meta name="author" content="" />
     <link rel="icon" href="../../favicon.ico" />
 
-    <title>BACKOFFICE - <?php echo $title; ?></title>
+    <title>BACKOFFICE - <?php echo htmlspecialchars($title ?? '', ENT_QUOTES, 'UTF-8'); ?></title>
 
     <!-- Bootstrap core CSS -->
     <!-- Font Awesome -->

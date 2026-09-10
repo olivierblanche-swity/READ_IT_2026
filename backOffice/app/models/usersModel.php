@@ -60,6 +60,10 @@ function insert(PDO $conn, array $data)
 
 function delete(PDO $conn, int $id)
 {
+    if ($id === 1) {
+        return 0;
+    }
+
     $sql = "DELETE FROM users
             WHERE id = :id;";
     $rs = $conn->prepare($sql);

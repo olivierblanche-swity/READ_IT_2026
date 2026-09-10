@@ -10,13 +10,13 @@
   foreach ($posts as $post):
     $created_at = strtotime($post['created_at']); ?>
    <div class="block-21 mb-4 d-flex">
-     <a class="blog-img mr-4" style="background-image: url(images/<?php echo $post['image']; ?>);"></a>
+     <a class="blog-img mr-4" style="background-image: url(images/<?php echo htmlspecialchars(rawurlencode($post['image'] ?? ''), ENT_QUOTES, 'UTF-8'); ?>);"></a>
      <div class="text">
-       <h3 class="heading"><a href="posts/<?php echo $post['id']; ?>/<?php echo Core\Helpers\slugify($post['title']); ?>.html"><?php echo $post['title']; ?></a></h3>
+       <h3 class="heading"><a href="posts/<?php echo (int) $post['id']; ?>/<?php echo htmlspecialchars(Core\Helpers\slugify($post['title']) ?? '', ENT_QUOTES, 'UTF-8'); ?>.html"><?php echo htmlspecialchars($post['title'] ?? '', ENT_QUOTES, 'UTF-8'); ?></a></h3>
        <div class="meta">
-         <div><a href="posts/<?php echo $post['id']; ?>/<?php echo Core\Helpers\slugify($post['title']); ?>.html"><span class="icon-calendar"></span> <?php echo date('F,d Y  g:ia', $created_at); ?></a></div>
-         <div><a href="posts/<?php echo $post['id']; ?>/<?php echo Core\Helpers\slugify($post['title']); ?>.html"><span class="icon-person"></span> <?php echo $post['firstname'] . ' ' . $post['lastname']; ?></a></div>
-         <div><a href="posts/<?php echo $post['id']; ?>/<?php echo Core\Helpers\slugify($post['title']); ?>.html"><span class="icon-chat"></span> <?php echo (int) $post['commentsCount']; ?></a></div>
+         <div><a href="posts/<?php echo (int) $post['id']; ?>/<?php echo htmlspecialchars(Core\Helpers\slugify($post['title']) ?? '', ENT_QUOTES, 'UTF-8'); ?>.html"><span class="icon-calendar"></span> <?php echo date('F,d Y  g:ia', $created_at); ?></a></div>
+         <div><a href="posts/<?php echo (int) $post['id']; ?>/<?php echo htmlspecialchars(Core\Helpers\slugify($post['title']) ?? '', ENT_QUOTES, 'UTF-8'); ?>.html"><span class="icon-person"></span> <?php echo htmlspecialchars($post['firstname'] . ' ' . $post['lastname'] ?? '', ENT_QUOTES, 'UTF-8'); ?></a></div>
+         <div><a href="posts/<?php echo (int) $post['id']; ?>/<?php echo htmlspecialchars(Core\Helpers\slugify($post['title']) ?? '', ENT_QUOTES, 'UTF-8'); ?>.html"><span class="icon-chat"></span> <?php echo (int) $post['commentsCount']; ?></a></div>
        </div>
      </div>
    </div>

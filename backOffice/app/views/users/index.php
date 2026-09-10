@@ -11,7 +11,7 @@
         <h1>LISTE DES UTILISATEURS</h1>
     </div>
 
-    <h4><a href="<?php echo BACKOFFICE_BASE_URL; ?>users/add/form">Ajout d'un utilisateur</a></h4>
+    <h4><a href="<?php echo htmlspecialchars(BACKOFFICE_BASE_URL ?? '', ENT_QUOTES, 'UTF-8'); ?>users/add/form">Ajout d'un utilisateur</a></h4>
 
     <table class="table table-bordered">
         <thead>
@@ -29,30 +29,32 @@
         <tbody>
             <?php foreach ($users as $user):; ?>
                 <tr>
-                    <td><?php echo $user['id']; ?></td>
-                    <td><?php echo $user['login']; ?></td>
+                    <td><?php echo (int) $user['id']; ?></td>
+                    <td><?php echo htmlspecialchars($user['login'] ?? '', ENT_QUOTES, 'UTF-8'); ?></td>
                     <td>**********</td>
-                    <td><?php echo $user['firstname']; ?></td>
-                    <td><?php echo $user['lastname']; ?></td>
-                    <td><?php echo $user['status']; ?></td>
-                    <td><?php echo $user['created_at']; ?></td>
+                    <td><?php echo htmlspecialchars($user['firstname'] ?? '', ENT_QUOTES, 'UTF-8'); ?></td>
+                    <td><?php echo htmlspecialchars($user['lastname'] ?? '', ENT_QUOTES, 'UTF-8'); ?></td>
+                    <td><?php echo htmlspecialchars($user['status'] ?? '', ENT_QUOTES, 'UTF-8'); ?></td>
+                    <td><?php echo htmlspecialchars($user['created_at'] ?? '', ENT_QUOTES, 'UTF-8'); ?></td>
 
                     <td>
-                        <form action="<?php echo BACKOFFICE_BASE_URL; ?>users/edit/form/<?php echo $user['id']; ?>" method="post" style="display:inline;">
-                            <input type="hidden" name="name" value="<?php echo $user['id']; ?>">
+                        <form action="<?php echo htmlspecialchars(BACKOFFICE_BASE_URL ?? '', ENT_QUOTES, 'UTF-8'); ?>users/edit/form/<?php echo (int) $user['id']; ?>" method="post" style="display:inline;">
+                            <input type="hidden" name="name" value="<?php echo (int) $user['id']; ?>">
 
                             <button type="submit" class="btn btn-primary">
                                 Modifier
                             </button>
                         </form>
 
-                        <form action="<?php echo BACKOFFICE_BASE_URL; ?>users/delete/<?php echo $user['id']; ?>" method="post" class="delete-form" style="display:inline;">
-                            <input type="hidden" name="id" value="<?php echo $user['id']; ?>">
+                        <?php if ((int) $user['id'] !== 1): ?>
+                        <form action="<?php echo htmlspecialchars(BACKOFFICE_BASE_URL ?? '', ENT_QUOTES, 'UTF-8'); ?>users/delete/<?php echo (int) $user['id']; ?>" method="post" class="delete-form" style="display:inline;">
+                            <input type="hidden" name="id" value="<?php echo (int) $user['id']; ?>">
 
                             <button type="submit" class="btn btn-secondary delete-btn">
                                 Supprimer
                             </button>
                         </form>
+                        <?php endif; ?>
                     </td>
                 </tr>
             <?php endforeach; ?>

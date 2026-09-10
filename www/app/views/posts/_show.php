@@ -6,7 +6,7 @@
 ?>
 
 <p class="mb-5">
-  <img src="images/<?php echo $post['image'] ?>" alt="<?php echo htmlspecialchars($post['title']); ?>" class="img-fluid">
+  <img src="images/<?php echo htmlspecialchars(rawurlencode($post['image'] ?? ''), ENT_QUOTES, 'UTF-8'); ?>" alt="<?php echo htmlspecialchars($post['title']); ?>" class="img-fluid">
 </p>
 
 <h1 class="mb-3 h1"><?php echo htmlspecialchars($post['title']); ?></h1>

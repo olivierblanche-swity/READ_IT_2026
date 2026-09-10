@@ -9,9 +9,7 @@ $id = $_GET['id'] ?? $_POST['id'] ?? null;
 
 switch ($tagAction):
 
-    case 'index':
-        TagsController\indexAction($conn);
-        break;
+    
 
     case 'addForm':
         TagsController\addFormAction();
@@ -44,4 +42,9 @@ switch ($tagAction):
                                     'name' => $_POST['name'] ?? ''
                                     ]);
         break;
+        
+    default:
+    
+        TagsController\indexAction($conn);
+        
 endswitch;

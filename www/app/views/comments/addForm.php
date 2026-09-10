@@ -16,7 +16,7 @@
             <textarea name="content" id="content" cols="30" rows="10" class="form-control"></textarea>
         </div>
         <div class="form-group">
-            <input type="hidden" name="post_id" value="<?php echo $id; ?>" />
+            <input type="hidden" name="post_id" value="<?php echo (int) $id; ?>" />
             <input type="submit" value="Post Comment" class="btn py-3 px-4 btn-primary">
         </div>
 

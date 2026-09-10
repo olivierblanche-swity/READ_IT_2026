@@ -10,8 +10,8 @@ $selectedTags = $post['tags'];
 ?>
 <div class="col-md-12">
     <div class="page-header"><h1>MODIFIER UN POST</h1></div>
-    <p><a href="<?php echo BACKOFFICE_BASE_URL; ?>posts">Retour à la liste des posts</a></p>
-    <form action="<?php echo BACKOFFICE_BASE_URL; ?>posts/update/<?php echo (int) $post['id']; ?>" method="post">
+    <p><a href="<?php echo htmlspecialchars(BACKOFFICE_BASE_URL ?? '', ENT_QUOTES, 'UTF-8'); ?>posts">Retour à la liste des posts</a></p>
+    <form action="<?php echo htmlspecialchars(BACKOFFICE_BASE_URL ?? '', ENT_QUOTES, 'UTF-8'); ?>posts/update/<?php echo (int) $post['id']; ?>" method="post">
         <div class="table-responsive">
             <table class="table table-bordered">
                 <thead>

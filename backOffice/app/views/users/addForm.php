@@ -5,10 +5,10 @@
 <div class="col-md-6">
     <div class="page-header">
         <h1>Ajout d'un utilisateur</h1>
-        <h4><a href="<?php echo BACKOFFICE_BASE_URL; ?>users">Retour aux utilisateurs</a></h4>
+        <h4><a href="<?php echo htmlspecialchars(BACKOFFICE_BASE_URL ?? '', ENT_QUOTES, 'UTF-8'); ?>users">Retour aux utilisateurs</a></h4>
     </div>
     <h4>Nouvel Utilisateur : </h4>
-    <form action="<?php echo BACKOFFICE_BASE_URL; ?>users/add/insert" method="post">
+    <form action="<?php echo htmlspecialchars(BACKOFFICE_BASE_URL ?? '', ENT_QUOTES, 'UTF-8'); ?>users/add/insert" method="post">
         <div>
             <label for="login">login : </label>
             <input type="text" id="login" name="login" placeholder="" value="" required />

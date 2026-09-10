@@ -4,10 +4,10 @@
  * ../app/views/templates/partials/_head.php
  */
 ?>
-<title>Readit - <?php echo $title; ?></title>
+<title>Readit - <?php echo htmlspecialchars($title ?? '', ENT_QUOTES, 'UTF-8'); ?></title>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<base href="<?php echo PUBLIC_BASE_URL; ?>">
+<base href="<?php echo htmlspecialchars(PUBLIC_BASE_URL ?? '', ENT_QUOTES, 'UTF-8'); ?>">
 
 <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700,800,900" rel="stylesheet">
 

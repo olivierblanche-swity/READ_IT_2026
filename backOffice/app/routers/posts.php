@@ -18,9 +18,7 @@ if (in_array($action, ['insert', 'update', 'delete', 'deleteComment'])
 }
 
 switch ($action):
-    case 'index':
-        PostsController\indexAction($conn);
-        break;
+    
     case 'addForm':
         PostsController\addFormAction($conn);
         break;
@@ -42,4 +40,8 @@ switch ($action):
     case 'deleteComment':
         CommentsController\deleteAction($conn, $id, (int) $_GET['comment_id']);
         break;
+    default:
+        
+        PostsController\indexAction($conn);
+        
 endswitch;

@@ -5,10 +5,10 @@
 <div class="col-md-6">
     <div class="page-header">
         <h1>Ajout d'un auteur</h1>
-        <h4><a href="<?php echo BACKOFFICE_BASE_URL; ?>authors">Retour aux auteurs</a></h4>
+        <h4><a href="<?php echo htmlspecialchars(BACKOFFICE_BASE_URL ?? '', ENT_QUOTES, 'UTF-8'); ?>authors">Retour aux auteurs</a></h4>
     </div>
     <h4>Nouvel Auteur : </h4>
-    <form action="<?php echo BACKOFFICE_BASE_URL; ?>authors/add/insert" method="post">
+    <form action="<?php echo htmlspecialchars(BACKOFFICE_BASE_URL ?? '', ENT_QUOTES, 'UTF-8'); ?>authors/add/insert" method="post">
         <div>
             <label for="firstname">Prénom : </label>
             <input type="text" id="name" name="firstname" placeholder="" value="" />

@@ -10,7 +10,7 @@
     <div class="page-header">
         <h1>Commentaires du post : <?php echo htmlspecialchars($post['title']); ?></h1>
     </div>
-    <p><a class="btn btn-primary" href="<?php echo BACKOFFICE_BASE_URL; ?>posts">Retour à la liste des posts</a></p>
+    <p><a class="btn btn-primary" href="<?php echo htmlspecialchars(BACKOFFICE_BASE_URL ?? '', ENT_QUOTES, 'UTF-8'); ?>posts">Retour à la liste des posts</a></p>
     <div class="table-responsive">
         <table class="table table-bordered">
             <thead>
@@ -33,7 +33,7 @@
                             <td style="white-space:pre-wrap;overflow-wrap:anywhere;"><?php echo htmlspecialchars($comment['commentContent'] ?? ''); ?></td>
                             <td><?php echo htmlspecialchars($comment['commentCreatedAt']); ?></td>
                             <td>
-                                <form action="<?php echo BACKOFFICE_BASE_URL; ?>posts/<?php echo (int) $post['id']; ?>/comments/delete/<?php echo (int) $comment['commentsId']; ?>" method="post" onsubmit="return confirm('Supprimer ce commentaire ?');">
+                                <form action="<?php echo htmlspecialchars(BACKOFFICE_BASE_URL ?? '', ENT_QUOTES, 'UTF-8'); ?>posts/<?php echo (int) $post['id']; ?>/comments/delete/<?php echo (int) $comment['commentsId']; ?>" method="post" onsubmit="return confirm('Supprimer ce commentaire ?');">
                                     <button type="submit" class="btn btn-secondary">Supprimer</button>
                                 </form>
                             </td>

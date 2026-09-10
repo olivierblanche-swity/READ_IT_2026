@@ -53,4 +53,9 @@ switch ($_GET['users']):
         UsersController\logoutAction();
         break;
 
+    default:
+
+        UsersController\indexAction($conn);
+        
+
 endswitch;

@@ -5,7 +5,7 @@
     <div class="page-header">
         <h1>LISTE DES POSTS</h1>
     </div>
-    <h4><a href="<?php echo BACKOFFICE_BASE_URL; ?>posts/add/form">Ajout d'un post</a></h4>
+    <h4><a href="<?php echo htmlspecialchars(BACKOFFICE_BASE_URL ?? '', ENT_QUOTES, 'UTF-8'); ?>posts/add/form">Ajout d'un post</a></h4>
     <div class="table-responsive">
         <table class="table table-bordered">
             <thead>
@@ -39,16 +39,16 @@
                             </td>
                             <td><?php echo htmlspecialchars($post['created_at'] ?? '—'); ?></td>
                             <td style="padding:0;position:relative;">
-                                <a href="<?php echo BACKOFFICE_BASE_URL; ?>posts/<?php echo (int) $post['id']; ?>/comments" style="display:block;padding:8px;" aria-label="Voir les commentaires du post : <?php echo htmlspecialchars($post['title']); ?>">
+                                <a href="<?php echo htmlspecialchars(BACKOFFICE_BASE_URL ?? '', ENT_QUOTES, 'UTF-8'); ?>posts/<?php echo (int) $post['id']; ?>/comments" style="display:block;padding:8px;" aria-label="Voir les commentaires du post : <?php echo htmlspecialchars($post['title']); ?>">
                                     <span aria-hidden="true" style="position:absolute;inset:0;"></span><?php echo (int) $post['commentsCount']; ?>
                                 </a>
                             </td>
                             <td>
-                                <form action="<?php echo BACKOFFICE_BASE_URL; ?>posts/edit/form/<?php echo (int) $post['id']; ?>" method="post" style="display:inline;">
+                                <form action="<?php echo htmlspecialchars(BACKOFFICE_BASE_URL ?? '', ENT_QUOTES, 'UTF-8'); ?>posts/edit/form/<?php echo (int) $post['id']; ?>" method="post" style="display:inline;">
 
                                     <button type="submit" class="btn btn-primary">Modifier</button>
                                 </form>
-                                <form action="<?php echo BACKOFFICE_BASE_URL; ?>posts/delete/<?php echo (int) $post['id']; ?>" method="post" class="delete-form" style="display:inline;">
+                                <form action="<?php echo htmlspecialchars(BACKOFFICE_BASE_URL ?? '', ENT_QUOTES, 'UTF-8'); ?>posts/delete/<?php echo (int) $post['id']; ?>" method="post" class="delete-form" style="display:inline;">
 
                                     <button type="submit" class="btn btn-secondary delete-btn">Supprimer</button>
                                 </form>

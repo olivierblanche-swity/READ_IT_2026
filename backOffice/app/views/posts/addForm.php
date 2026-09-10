@@ -8,8 +8,8 @@
 
 <div class="col-md-12">
     <div class="page-header"><h1>AJOUTER UN POST</h1></div>
-    <p><a href="<?php echo BACKOFFICE_BASE_URL; ?>posts">Retour à la liste des posts</a></p>
-    <form action="<?php echo BACKOFFICE_BASE_URL; ?>posts/add/insert" method="post">
+    <p><a href="<?php echo htmlspecialchars(BACKOFFICE_BASE_URL ?? '', ENT_QUOTES, 'UTF-8'); ?>posts">Retour à la liste des posts</a></p>
+    <form action="<?php echo htmlspecialchars(BACKOFFICE_BASE_URL ?? '', ENT_QUOTES, 'UTF-8'); ?>posts/add/insert" method="post">
         <div class="table-responsive">
             <table class="table table-bordered">
                 <thead>

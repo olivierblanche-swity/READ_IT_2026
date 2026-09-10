@@ -11,10 +11,6 @@ $id = $_GET['id'] ?? $_POST['id'] ?? null;
 
 switch ($categoryAction):
 
-    case 'index':
-        CategoriesController\indexAction($conn);
-        break;
-
     case 'addForm':
         CategoriesController\addFormAction();
         break;
@@ -46,4 +42,9 @@ switch ($categoryAction):
                                     'name' => $_POST['name'] ?? ''
                                     ]);
         break;
+
+    default:
+
+        CategoriesController\indexAction($conn);
+
 endswitch;

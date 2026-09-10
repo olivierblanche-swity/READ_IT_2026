@@ -18,7 +18,7 @@
             <div class="col-md-6 d-flex ftco-animate">
 
                 <div class="blog-entry justify-content-end">
-                    <a href="posts/<?php echo $post['id']; ?>/<?php echo Core\Helpers\slugify($post['title']); ?>.html" class="block-20" style="background-image: url('images/<?php echo $post['image'] ?>');">
+                    <a href="posts/<?php echo (int) $post['id']; ?>/<?php echo htmlspecialchars(Core\Helpers\slugify($post['title']) ?? '', ENT_QUOTES, 'UTF-8'); ?>.html" class="block-20" style="background-image: url('images/<?php echo htmlspecialchars(rawurlencode($post['image'] ?? ''), ENT_QUOTES, 'UTF-8'); ?>');">
                     </a>
                     <div class="text p-4 float-right d-block">
                         <div class="topper d-flex align-items-center">
@@ -30,9 +30,9 @@
                                 <span class="mos"><?php echo \Core\Helpers\dateFormator($post['created_at'], 'F'); ?></span>
                             </div>
                         </div>
-                        <h3 class="heading mb-3"><a href="posts/<?php echo $post['id']; ?>/<?php echo Core\Helpers\slugify($post['title']); ?>.html"><?php echo $post['title']; ?></a></h3>
-                        <p><?php echo $post['resume'] ?></p>
-                        <p><a href="posts/<?php echo $post['id']; ?>/<?php echo Core\Helpers\slugify($post['title']); ?>.html" class="btn-custom"><span class="ion-ios-arrow-round-forward mr-3"></span>Read more</a></p>
+                        <h3 class="heading mb-3"><a href="posts/<?php echo (int) $post['id']; ?>/<?php echo htmlspecialchars(Core\Helpers\slugify($post['title']) ?? '', ENT_QUOTES, 'UTF-8'); ?>.html"><?php echo htmlspecialchars($post['title'] ?? '', ENT_QUOTES, 'UTF-8'); ?></a></h3>
+                        <p><?php echo htmlspecialchars($post['resume'] ?? '', ENT_QUOTES, 'UTF-8'); ?></p>
+                        <p><a href="posts/<?php echo (int) $post['id']; ?>/<?php echo htmlspecialchars(Core\Helpers\slugify($post['title']) ?? '', ENT_QUOTES, 'UTF-8'); ?>.html" class="btn-custom"><span class="ion-ios-arrow-round-forward mr-3"></span>Read more</a></p>
                     </div>
                 </div>
             </div>
@@ -44,7 +44,7 @@
                 <?php if (!empty($hasMorePosts)): ?>
                     <?php $publicPath = rtrim(PUBLIC_BASE_URL, '/'); ?>
                     <ul>
-                        <li><a href="<?php echo $publicPath; ?>/page/<?php echo $page + 1; ?>">+</a></li>
+                        <li><a href="<?php echo htmlspecialchars($publicPath ?? '', ENT_QUOTES, 'UTF-8'); ?>/page/<?php echo (int) $page + 1; ?>">+</a></li>
                     </ul>
                 <?php endif; ?>
             </div>
