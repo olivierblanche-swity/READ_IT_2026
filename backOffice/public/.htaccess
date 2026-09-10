@@ -8,6 +8,54 @@ RewriteRule ^ - [L]
 #----------------------------
 # REGLE DE RE-ECRITURE
 
+# ROUTE DES POSTS-------------------------------
+
+# SUPPRESSION D'UN POST
+# PATERN posts/delete/id
+# URL index.php?posts=delete&id=x
+
+RewriteRule ^posts/delete/([1-9][0-9]*)/?$ index.php?posts=delete&id=$1 [L]
+
+# AJOUT D'UN POST
+# PATERN posts/add/form
+# URL index.php?authors=addForm
+
+RewriteRule ^posts/add/form/?$ index.php?posts=addForm [L]
+
+# PATERN posts/add/insert
+# URL index.php?posts=insert
+
+RewriteRule ^posts/add/insert/?$ index.php?posts=insert [L]
+
+# MODIFICATION DES POSTS
+
+# PATERN posts/edit/form/id=x
+# URL index.php?posts=editForm&id=x
+
+RewriteRule ^posts/edit/form/([1-9][0-9]*)/?$ index.php?posts=editForm&id=$1 [L]
+
+# PATERN posts/edit/form/id=x
+# URL index.php?posts=editForm&id=x
+
+RewriteRule ^posts/update/([1-9][0-9]*)/?$ index.php?posts=update&id=$1 [L]
+
+# COMMENTAIRES DU POST
+
+# PATERN posts/id=x/comments/?
+# URL index.php?posts=comments&id=x
+
+RewriteRule ^posts/([1-9][0-9]*)/comments/?$ index.php?posts=comments&id=$1 [L]
+
+# PATERN posts/id=x/comments/delete/comment_id=x/?
+# URL index.php?posts=deleteComment&id=x&comment_id=x
+
+RewriteRule ^posts/([1-9][0-9]*)/comments/delete/([1-9][0-9]*)/?$ index.php?posts=deleteComment&id=$1&comment_id=$2 [L]
+
+# LISTE DES POSTS
+RewriteRule ^posts/?$ index.php?posts=index [L]
+
+
+
 # ROUTE DES AUTHORS-----------------------------
 
 # UPDATE AUTHORS

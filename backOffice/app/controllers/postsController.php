@@ -8,19 +8,11 @@ namespace App\Controllers\PostsController;
 
 use \PDO;
 use \App\Models\PostsModel;
-use \App\Models\TagsModel;
-use \App\Models\CategoriesModel;
-use \App\Models\AuthorsModel;
-use \App\Models\CommentsModel;
 
 function indexAction(PDO $conn)
 {
     include_once '../app/models/postsModel.php';
-    $page = max(1, (int) ($_GET['page'] ?? 1));
-    $postsPerPage = 10;
-    $posts = PostsModel\findAll($conn, $page, true, $postsPerPage);
-    $hasMorePosts = count($posts) > $postsPerPage;
-    $posts = array_slice($posts, 0, $postsPerPage);
+    $posts = PostsModel\findAll($conn);
 
     global $title, $content;
     $title = "posts";
@@ -29,59 +21,60 @@ function indexAction(PDO $conn)
     $content = ob_get_clean();
 }
 
-function tagAction(PDO $conn, string $id)
-{
-    include_once '../app/models/tagsModel.php';
-    $posts = TagsModel\findAllByTagId($conn, $id);
-
-    global $title, $content;
-    $title = "tag";
-    ob_start();
-    include '../app/views/posts/index.php';
-    $content = ob_get_clean();
-}
-
-function categoryAction(PDO $conn, string $id)
-{
-    include_once '../app/models/categoriesModel.php';
-    $posts = CategoriesModel\findAllByCategoryId($conn, $id);
-
-    global $title, $content;
-    $title = "category";
-    ob_start();
-    include '../app/views/posts/index.php';
-    $content = ob_get_clean();
-}
-
-function showAction(PDO $conn, string $id)
+function deleteAction(PDO $conn, int $id)
 {
     include_once '../app/models/postsModel.php';
-    include_once '../app/models/tagsModel.php';
+    PostsModel\deleteAction($conn, $id);
+    header('Location: ' . BACKOFFICE_BASE_URL . 'posts', true, 303);
+    exit;
+}
+
+function addFormAction(PDO $conn)
+{
     include_once '../app/models/authorsModel.php';
-    include_once '../app/models/commentsModel.php';
-
-    $post = PostsModel\findOneById($conn, $id);
-    $tags = TagsModel\findAllByPostId($conn, $id);
-    $author = AuthorsModel\findAllByPostId($conn, $id);
-    $comments = CommentsModel\findAllByPostId($conn, $id);
-
-
-
+    include_once '../app/models/categoriesModel.php';
+    include_once '../app/models/tagsModel.php';
+    $authors = \App\Models\AuthorsModel\findAll($conn);
+    $categories = \App\Models\CategoriesModel\findAll($conn);
+    $tags = \App\Models\TagsModel\findAll($conn);
     global $title, $content;
-    $title = "posts";
+    $title = 'Ajouter un post';
     ob_start();
-    include '../app/views/posts/show.php';
+    include '../app/views/posts/addForm.php';
     $content = ob_get_clean();
 }
 
-function searchAction(PDO $conn, string $query)
+
+function insertAction(PDO $conn, array $data)
 {
     include_once '../app/models/postsModel.php';
-    $posts = PostsModel\search($conn, $query);
+    PostsModel\insertAction($conn, $data);
+    header('Location: ' . BACKOFFICE_BASE_URL . 'posts');
+    exit;
+}
 
+function editFormAction(PDO $conn, int $id)
+{
+    include_once '../app/models/postsModel.php';
+    $post = PostsModel\findOneById($conn, (string) $id);
+    include_once '../app/models/authorsModel.php';
+    include_once '../app/models/categoriesModel.php';
+    include_once '../app/models/tagsModel.php';
+    $authors = \App\Models\AuthorsModel\findAll($conn);
+    $categories = \App\Models\CategoriesModel\findAll($conn);
+    $tags = \App\Models\TagsModel\findAll($conn);
     global $title, $content;
-    $title = "search";
+    $title = 'Modifier un post';
     ob_start();
-    include '../app/views/posts/index.php';
+    include '../app/views/posts/editForm.php';
     $content = ob_get_clean();
+}
+
+
+function updateAction(PDO $conn, int $id, array $data)
+{
+    include_once '../app/models/postsModel.php';
+    PostsModel\updateAction($conn, $id, $data);
+    header('Location: ' . BACKOFFICE_BASE_URL . 'posts');
+    exit;
 }

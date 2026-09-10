@@ -7,7 +7,6 @@
 namespace App\Controllers\UsersController;
 
 use \PDO;
-use \App\Models\AuthorsModel;
 use \App\Models\UsersModel;
 
 function dashboardAction(PDO $conn){

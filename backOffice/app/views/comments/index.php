@@ -1,31 +1,46 @@
-<?php 
+<?php
+
 /**
  * @var array $comments
- * 
- * var disp $comments array ( commentsId, pseudo, commentContent, commentCreatedAt)
- * 
- *  echo date('F,d Y \a\t g:ia', $created_at);  F=mois d=jour Y annee 4 chif \a\t =at g=heure i=sec a=am/pm
+ * @var array $post
  */
+
 ?>
-
-
-<div class="pt-5 mt-5">
-  <h3 class="mb-5"><?php echo count($comments); ?> Comments</h3>
-  <ul class="comment-list">
-    <?php foreach ($comments as $comment):
-      $created_at = strtotime($comment['commentCreatedAt']); ?>
-      <li class="comment">
-        <div class="comment-body">
-          <h3><?php echo $comment['pseudo']; ?></h3>
-          <div class="meta mb-3"><?php echo date('F,d Y \a\t g:ia', $created_at); ?></div>
-          <p><?php echo $comment['commentContent']; ?></p>
-        </div>
-      </li>
-    <?php endforeach; ?>
-
-
-  </ul>
-  <!-- FORM -->
-
-  <?php include_once '../app/views/comments/addForm.php'; ?>
+<div class="col-md-12">
+    <div class="page-header">
+        <h1>Commentaires du post : <?php echo htmlspecialchars($post['title']); ?></h1>
+    </div>
+    <p><a class="btn btn-primary" href="<?php echo BACKOFFICE_BASE_URL; ?>posts">Retour à la liste des posts</a></p>
+    <div class="table-responsive">
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th scope="col">ID</th>
+                    <th scope="col">Pseudo</th>
+                    <th scope="col">Commentaire</th>
+                    <th scope="col">Date de création</th>
+                    <th scope="col">Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                <?php if (!$comments): ?>
+                    <tr><td colspan="5">Aucun commentaire pour ce post.</td></tr>
+                <?php else: ?>
+                    <?php foreach ($comments as $comment): ?>
+                        <tr>
+                            <td><?php echo (int) $comment['commentsId']; ?></td>
+                            <td><?php echo htmlspecialchars($comment['pseudo']); ?></td>
+                            <td style="white-space:pre-wrap;overflow-wrap:anywhere;"><?php echo htmlspecialchars($comment['commentContent'] ?? ''); ?></td>
+                            <td><?php echo htmlspecialchars($comment['commentCreatedAt']); ?></td>
+                            <td>
+                                <form action="<?php echo BACKOFFICE_BASE_URL; ?>posts/<?php echo (int) $post['id']; ?>/comments/delete/<?php echo (int) $comment['commentsId']; ?>" method="post" onsubmit="return confirm('Supprimer ce commentaire ?');">
+                                    <button type="submit" class="btn btn-secondary">Supprimer</button>
+                                </form>
+                            </td>
+                        </tr>
+                    <?php endforeach; ?>
+                <?php endif; ?>
+            </tbody>
+        </table>
+    </div>
 </div>

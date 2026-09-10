@@ -8,7 +8,7 @@ function findAllByPostId(PDO $conn, string $id):array
 {
     $sql = "SELECT c.id AS commentsId, c.pseudo, c.content AS commentContent, c.created_at AS commentCreatedAt
             FROM comments c
-            WHERE post_id = :id;";
+            WHERE post_id = :id ORDER BY c.created_at DESC, c.id DESC;";
 
     $rs = $conn->prepare($sql);
     $rs->bindValue(':id', $id, PDO::PARAM_INT);
@@ -19,21 +19,15 @@ function findAllByPostId(PDO $conn, string $id):array
     return $comments;
 }
 
-function insertOne(PDO $conn)
+function deleteAction(PDO $conn, int $postId, int $commentId)
 {
-    $sql = "INSERT INTO comments 
-            SET pseudo = :pseudo,
-                content = :content,
-                post_id = :post_id,
-                created_at = NOW();";
-                
+    $sql = "DELETE FROM comments
+            WHERE id = :id
+            AND post_id = :post_id";
+
     $rs = $conn->prepare($sql);
-    
-    $rs->bindValue(':pseudo', $_POST['pseudo'], PDO::PARAM_STR);
-    $rs->bindValue(':content', $_POST['content'], PDO::PARAM_STR);
-    $postId = (int) $_POST['post_id'];
+    $rs->bindValue(':id', $commentId, PDO::PARAM_INT);
     $rs->bindValue(':post_id', $postId, PDO::PARAM_INT);
     $rs->execute();
-
-    return intval($conn->lastInsertId());
+    return $rs->rowCount();
 }
