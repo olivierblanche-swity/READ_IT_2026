@@ -47,5 +47,6 @@ switch ($authorsAction):
     default:
 
         AuthorsController\indexAction($conn);
+        break;
 
 endswitch;

@@ -18,9 +18,24 @@ function indexAction(PDO $conn)
     include_once '../app/models/postsModel.php';
     $page = max(1, (int) ($_GET['page'] ?? 1));
     $postsPerPage = 10;
+    $totalPosts = PostsModel\countAll($conn);
+    $totalPages = max(1, (int) ceil($totalPosts / $postsPerPage));
+    $page = min($page, $totalPages);
+
     $posts = PostsModel\findAll($conn, $page, true, $postsPerPage);
     $hasMorePosts = count($posts) > $postsPerPage;
     $posts = array_slice($posts, 0, $postsPerPage);
+    $hasPreviousPage = $page > 1;
+    $previousPage = max(1, $page - 1);
+    $nextPage = min($totalPages, $page + 1);
+    $pageNumbers = [];
+
+    $startPage = max(1, $page - 2);
+    $endPage = min($totalPages, $page + 2);
+
+    for ($i = $startPage; $i <= $endPage; $i++) {
+        $pageNumbers[] = $i;
+    }
 
     global $title, $content;
     $title = "posts";

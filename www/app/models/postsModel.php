@@ -8,6 +8,19 @@ namespace App\Models\PostsModel;
 
 use \PDO;
 
+function countAll(PDO $conn): int
+{
+    $sql = "SELECT COUNT(*) AS total
+            FROM posts;";
+
+    $rs = $conn->query($sql);
+    $row = $rs->fetch(PDO::FETCH_ASSOC);
+    $rs->closeCursor();
+    unset($rs);
+
+    return (int) ($row['total'] ?? 0);
+}
+
 function findAll(PDO $conn, int $page = 1, bool $withNextPage = false, int $limit = 10): array
 {
     $page = max(1, $page);

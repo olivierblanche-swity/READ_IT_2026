@@ -46,5 +46,6 @@ switch ($categoryAction):
     default:
 
         CategoriesController\indexAction($conn);
-
+        break;
+        
 endswitch;

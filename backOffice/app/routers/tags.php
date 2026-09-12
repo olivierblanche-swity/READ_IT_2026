@@ -46,5 +46,6 @@ switch ($tagAction):
     default:
     
         TagsController\indexAction($conn);
+        break;
         
 endswitch;

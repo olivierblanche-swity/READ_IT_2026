@@ -43,5 +43,6 @@ switch ($action):
     default:
         
         PostsController\indexAction($conn);
+        break;
         
 endswitch;

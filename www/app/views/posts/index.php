@@ -41,12 +41,24 @@
     <div class="row mt-5">
         <div class="col text-center">
             <div class="block-27">
-                <?php if (!empty($hasMorePosts)): ?>
-                    <?php $publicPath = rtrim(PUBLIC_BASE_URL, '/'); ?>
-                    <ul>
-                        <li><a href="<?php echo htmlspecialchars($publicPath ?? '', ENT_QUOTES, 'UTF-8'); ?>/page/<?php echo (int) $page + 1; ?>">+</a></li>
-                    </ul>
-                <?php endif; ?>
+                <?php $publicPath = rtrim(PUBLIC_BASE_URL, '/'); ?>
+                <ul>
+                    <?php if (!empty($hasPreviousPage)): ?>
+                        <li><a href="<?php echo htmlspecialchars($publicPath ?? '', ENT_QUOTES, 'UTF-8'); ?>/page/<?php echo (int) $previousPage; ?>">&lt;</a></li>
+                    <?php endif; ?>
+
+                    <?php foreach ($pageNumbers as $pageNumber): ?>
+                        <?php if ((int) $pageNumber === (int) $page): ?>
+                            <li class="active"><span><?php echo (int) $pageNumber; ?></span></li>
+                        <?php else: ?>
+                            <li><a href="<?php echo htmlspecialchars($publicPath ?? '', ENT_QUOTES, 'UTF-8'); ?>/page/<?php echo (int) $pageNumber; ?>"><?php echo (int) $pageNumber; ?></a></li>
+                        <?php endif; ?>
+                    <?php endforeach; ?>
+
+                    <?php if (!empty($hasMorePosts)): ?>
+                        <li><a href="<?php echo htmlspecialchars($publicPath ?? '', ENT_QUOTES, 'UTF-8'); ?>/page/<?php echo (int) $nextPage; ?>">&gt;</a></li>
+                    <?php endif; ?>
+                </ul>
             </div>
         </div>
     </div>
